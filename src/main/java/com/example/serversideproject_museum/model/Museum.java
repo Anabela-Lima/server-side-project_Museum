@@ -17,7 +17,7 @@ public class Museum {
     private Long id;
     private String name;
     @JsonIgnore
-    @OneToMany(mappedBy = "museum", cascade = ALL)
+    @OneToMany(mappedBy = "museums", cascade = ALL)
     private Set<Exhibit> exhibits = new HashSet<>();
     //private Set<Staff> staff;
 
