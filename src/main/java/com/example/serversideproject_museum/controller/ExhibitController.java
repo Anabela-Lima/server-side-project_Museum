@@ -37,13 +37,10 @@ public class ExhibitController {
     }
 
     @DeleteMapping("exhibits/{id}")
-    public ResponseEntity<String> deleteArtifact(@PathVariable Long id){
+    public ResponseEntity<String> deleteArtefact(@PathVariable Long id){
         exhibitRepository.getById(id);
         return ResponseEntity.ok("Exhibit with id" +id +" has been removed from database.");
     }
-
-
-
 
 
 }
