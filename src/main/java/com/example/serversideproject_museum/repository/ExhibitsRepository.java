@@ -1,6 +1,9 @@
 package com.example.serversideproject_museum.repository;
 
-public interface ExhibitsRepository {
+import com.example.serversideproject_museum.model.Exhibit;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ExhibitsRepository extends JpaRepository<Exhibit, Long> {
 
 
 }
