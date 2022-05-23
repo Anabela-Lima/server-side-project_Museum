@@ -1,5 +1,7 @@
 package com.example.serversideproject_museum.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,12 +30,8 @@ public class Staff {
     private Integer salary;
 
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "assignments",
-            joinColumns = @JoinColumn(staff_id),
-            inverseJoinColumns = @JoinColumn(name = exhibit_id)
-    )
+    @ManyToMany(mappedBy = "staff")
+    @JsonIgnoreProperties(value = "staff")
     private Set<Exhibit> exhibits;
 
 
