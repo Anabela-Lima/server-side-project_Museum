@@ -22,10 +22,10 @@ public class Museum {
     //private Set<Staff> staff;
 
 
-    public Museum(Long id, String name, Set<Exhibit> exhibits) {
+    public Museum(Long id, String name) {
         this.id = id;
         this.name = name;
-        this.exhibits = exhibits;
+        this.exhibits = new HashSet<>();
     }
 
     public Museum(String name) {

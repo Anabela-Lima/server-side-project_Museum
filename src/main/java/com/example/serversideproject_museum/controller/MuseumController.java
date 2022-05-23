@@ -61,17 +61,29 @@ public class MuseumController {
 
     @PostMapping("/CreateMuseum")
     public ResponseEntity<Museum> addMuseum(
-            @RequestParam(required = true) String name,  // name
-            @RequestParam(required = true)  Long id )  // id for exhibit
+            @RequestParam(required = true) String name)  // id for exhibit
     {
-        Optional<Exhibit> exhibitOptional = exhibitService.getExhibit(id);
-        if (exhibitOptional.isPresent()) {
-           museumService.addMuseum(name, exhibitOptional.get());
+           museumService.addMuseum(name);
             return ResponseEntity.ok().build();
-        }
-        return ResponseEntity.badRequest().build();
     }
 
+
+
+
+
+//
+//    @PostMapping("/CreateMuseum")
+//    public ResponseEntity<Museum> addMuseum(
+//            @RequestParam(required = true) String name,  // name
+//            @RequestParam(required = true)  Long id )  // id for exhibit
+//    {
+//        Optional<Exhibit> exhibitOptional = exhibitService.getExhibit(id);
+//        if (exhibitOptional.isPresent()) {
+//            museumService.addMuseum(name, exhibitOptional.get());
+//            return ResponseEntity.ok().build();
+//        }
+//        return ResponseEntity.badRequest().build();
+//    }
 
 
 }
