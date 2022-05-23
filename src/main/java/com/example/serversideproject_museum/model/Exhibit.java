@@ -11,7 +11,7 @@ import java.util.Set;
 @Table(name = "exhibits")
 public class Exhibit {
 
-  //  Exhibit started Ana
+  //  Exhibit started Ana commit
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,8 +55,6 @@ public class Exhibit {
         this.museum= museum;
 
     }
-
-
 
 
 
