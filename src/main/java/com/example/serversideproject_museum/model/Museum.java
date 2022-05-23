@@ -1,12 +1,23 @@
 package com.example.serversideproject_museum.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.GenerationType.IDENTITY;
+
+@Entity
 public class Museum {
 
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
     private String name;
+    @JsonIgnore
+    @OneToMany(mappedBy = "museum", cascade = ALL)
     private Set<Exhibit> exhibits = new HashSet<>();
     //private Set<Staff> staff;
 
