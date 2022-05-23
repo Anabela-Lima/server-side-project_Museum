@@ -18,10 +18,12 @@ public class Museum {
 
     private Long id;
     private String name;
+    private Country country;
     @JsonIgnore
     @OneToMany(mappedBy = "museum", cascade = ALL)
     private Set<Exhibit> exhibits = new HashSet<>();
     //private Set<Staff> staff;
+
 
 
     public Museum(Long id, String name) {
