@@ -18,7 +18,7 @@ public class Museum {
 
     private Long id;
     private String name;
-    private String coutnry;
+    private Country country;
     @JsonIgnore
     @OneToMany(mappedBy = "museum", cascade = ALL)
     private Set<Exhibit> exhibits = new HashSet<>();
