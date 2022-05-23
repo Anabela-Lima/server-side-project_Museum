@@ -5,6 +5,7 @@ import com.example.serversideproject_museum.repository.MuseumRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -17,6 +18,11 @@ public class MuseumService {
     }
 
     public List<Museum> findAll() {
+
         return museumRepository.findAll();
+    }
+
+    public Optional<Museum> getMuseum(Long id) {
+        return museumRepository.findById(id);
     }
 }
