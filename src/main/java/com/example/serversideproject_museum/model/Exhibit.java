@@ -27,7 +27,7 @@ public class Exhibit {
 //    private Set <Staff> staff;  extension
 
     @ManyToOne   // relationship between Exhibits and Museum - many exhibits in 1 museum
-    private Museum museums;
+    private Museum museum;
 
 
     // constructors (2)
