@@ -1,6 +1,7 @@
 package com.example.serversideproject_museum.controller;
 
 import com.example.serversideproject_museum.model.Artefact;
+import com.example.serversideproject_museum.repository.ArtefactRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,8 +17,8 @@ public class ArtefactController {
     }
 
     @GetMapping("/artefacts")
-    public ResponseEntity<List<Artefacts>> getAllArtefacts(){
-        List<Artefacts> artefacts = artefactRepository.findAll();
+    public ResponseEntity<List<Artefact>> getAllArtefacts(){
+        List<Artefact> artefacts = artefactRepository.findAll();
         return ResponseEntity.ok().body(artefacts);
     }
 
@@ -28,7 +29,7 @@ public class ArtefactController {
     }
 
     @PostMapping("/artefacts")
-    public ResponseEntity<Artefact> addArtefact(@RequestBody Artefact artifact){
+    public ResponseEntity<Artefact> addArtefact(@RequestBody Artefact artefact){
         Artefact newArtefact = artefactRepository.save(artefact);
         return ResponseEntity.ok().body(newArtefact);
     }
