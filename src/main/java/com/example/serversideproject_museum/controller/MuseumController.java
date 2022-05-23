@@ -67,6 +67,17 @@ public class MuseumController {
             return ResponseEntity.ok().build();
     }
 
+ // putMapping
+
+ @PutMapping("/museum/{museum_id}/exhibit/{exhibit_id}")
+    public ResponseEntity<Exhibit>addExhibitID(@RequestParam @PathVariable Long museum_id, @PathVariable Long exhibit_id){
+
+        Museum museum = museumService.getMuseum(museum_id).orElseThrow();
+        Exhibit exhibit = exhibitService.getExhibit(exhibit_id).orElseThrow();
+        museum.addExhibit(exhibit);
+        return ResponseEntity.ok().build();
+ }
+
 
 
 

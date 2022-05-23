@@ -52,4 +52,7 @@ public class Museum {
     }
 
 
+    public void addExhibit(Exhibit exhibit) {
+        exhibits.add(exhibit);
+    }
 }
