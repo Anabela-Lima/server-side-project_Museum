@@ -14,6 +14,8 @@ public class Museum {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
+
+
     private Long id;
     private String name;
     @JsonIgnore
