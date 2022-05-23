@@ -18,6 +18,8 @@ public class Museum {
 
     private Long id;
     private String name;
+
+    @Enumerated(EnumType.STRING)
     private Country country;
     @JsonIgnore
     @OneToMany(mappedBy = "museum", cascade = ALL)
