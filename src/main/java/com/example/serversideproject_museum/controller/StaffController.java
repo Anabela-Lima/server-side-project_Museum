@@ -15,6 +15,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 
 // Ana started working commit
@@ -86,9 +89,18 @@ public class StaffController {
    // fire staff method- delete
     @DeleteMapping("/fireStaff/{id}")
 
-    public void fireStaff(@PathVariable Long id) {
+    public ResponseEntity<String> fireStaff(@PathVariable Long id) {
         staffRepository.deleteById(id);
+        List<Long> staffIds = staffService.getAllStaff().stream().map(Staff::getId)
+                .filter(f -> f.equals(id)).toList();
+        if (staffIds.isEmpty())
+        {return ResponseEntity.ok("Staff" + staffService
+                .getStaff(id)
+                .stream()
+                .map(Staff::getFirsName).collect(toList())
+                + " has been fired from the Museum and is no longer in our records");}
 
+        return ResponseEntity.badRequest().build();
     }
 
 

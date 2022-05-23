@@ -124,7 +124,16 @@ public Staff(){};
     }
 
 
-
-
-
+    @Override
+    public String toString() {
+        return "Staff{" +
+                "id=" + id +
+                ", firsName='" + firsName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", dob=" + dob +
+                ", address='" + address + '\'' +
+                ", salary=" + salary +
+                ", exhibits=" + exhibits +
+                '}';
+    }
 }
