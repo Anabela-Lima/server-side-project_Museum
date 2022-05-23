@@ -21,7 +21,7 @@ public class Artefact {
     private String country;
     @ManyToOne
     @JoinColumn(name = "exhibit_id", nullable = false)
-    private Exhibit exhibit;
+    private Exhibit exhibits;
 
     public Artefact(Long id, String name, String creator, Date date, String country, Exhibit exhibit) {
         this.id = id;
@@ -29,7 +29,7 @@ public class Artefact {
         this.creator = creator;
         this.date = date;
         this.country = country;
-        this.exhibit = exhibit;
+        this.exhibits = exhibits;
     }
 
     public Artefact() {
