@@ -47,6 +47,7 @@ public Staff(){};
 // arg constructor
 
     public Staff(String firsName, String lastName, Date dob, String address, Integer salary, Set<Exhibit> exhibits) {
+        this.id = id;
         this.firsName = firsName;
         this.lastName = lastName;
         this.dob = dob;
