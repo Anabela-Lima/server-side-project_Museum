@@ -6,7 +6,7 @@ import java.util.Date;
 @Entity
 @Table(name = "artefacts")
 public class Artefact {
-// jd
+// artefact
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
