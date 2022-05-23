@@ -11,4 +11,32 @@ public class Museum {
     //private Set<Staff> staff;
 
 
+    public Museum(Long id, String name, Set<Exhibit> exhibits) {
+        this.id = id;
+        this.name = name;
+        this.exhibits = exhibits;
+    }
+
+    public Museum(String name) {
+        this.name = name;
+    }
+
+    public Museum() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Set<Exhibit> getExhibits() {
+        return exhibits;
+    }
+
+    public void setExhibits(Set<Exhibit> exhibits) {
+        this.exhibits = exhibits;
+    }
 }
