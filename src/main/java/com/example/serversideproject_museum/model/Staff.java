@@ -1,18 +1,41 @@
 package com.example.serversideproject_museum.model;
 
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Set;
 
+@Entity
+@Table (name = "staff")
 public class Staff {
-
 
 
 // properties
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Long id;
-    private String name;
+    @Column
+    private String firsName;
+    @Column
+    private String lastName;
+    @Column
     private Date dob;
+    @Column
     private String address;
+    @Column
     private Integer salary;
+
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "assignments",
+            joinColumns = @JoinColumn(staff_id),
+            inverseJoinColumns = @JoinColumn(name = exhibit_id)
+    )
+    private Set<Exhibit> exhibits;
+
 
 // constructors (2)
 
@@ -23,34 +46,33 @@ public Staff(){};
 
 // arg constructor
 
-
-    public Staff(Long id, String name, Date dob, String address, Integer salary) {
-        this.id = id;
-        this.name = name;
+    public Staff(String firsName, String lastName, Date dob, String address, Integer salary, Set<Exhibit> exhibits) {
+        this.firsName = firsName;
+        this.lastName = lastName;
         this.dob = dob;
         this.address = address;
         this.salary = salary;
+        this.exhibits = exhibits;
     }
-
 
 
     // getters and setters
 
 
-    public Long getId() {
-        return id;
+    public String getFirsName() {
+        return firsName;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setFirsName(String firsName) {
+        this.firsName = firsName;
     }
 
-    public String getName() {
-        return name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public Date getDob() {
@@ -75,5 +97,13 @@ public Staff(){};
 
     public void setSalary(Integer salary) {
         this.salary = salary;
+    }
+
+    public Set<Exhibit> getExhibits() {
+        return exhibits;
+    }
+
+    public void setExhibits(Set<Exhibit> exhibits) {
+        this.exhibits = exhibits;
     }
 }
