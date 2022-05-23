@@ -1,5 +1,7 @@
 package com.example.serversideproject_museum.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.websocket.OnError;
 import java.util.Set;
@@ -18,11 +20,14 @@ public class Exhibit {
     @Column
     private String name;
 
-    @OneToMany(mappedBy = "exhibits", cascade = CascadeType.ALL)    //- relationship between exhibit and artefacts
+    @OneToMany(mappedBy = "exhibits", cascade = CascadeType.ALL)    //- relationship between exhibit and artefacts - one exhit has many artifcats
     private Set<Artefact> artefacts;
+
 
 //    private Set <Staff> staff;  extension
 
+    @ManyToOne   // relationship between Exhibits and Museum - many exhibits in 1 museum
+    private Museum museum;
 
 
     // constructors (2)
