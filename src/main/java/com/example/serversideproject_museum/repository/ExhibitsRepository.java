@@ -1,6 +1,11 @@
 package com.example.serversideproject_museum.repository;
 
-public interface ExhibitsRepository {
+import com.example.serversideproject_museum.model.Exhibit;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface ExhibitsRepository extends JpaRepository<Exhibit, Long> {
 
 
 }
