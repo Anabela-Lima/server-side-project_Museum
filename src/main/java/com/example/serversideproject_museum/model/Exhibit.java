@@ -46,11 +46,18 @@ public class Exhibit {
     public Exhibit(){};
 
     // arg constructor
+
     public Exhibit(Long id, String name) {
         this.id = id;
         this.name = name;
         this.artefacts = artefacts;
+        this.staff= staff;
+        this.museum= museum;
+
     }
+
+
+
 
 
     // getters + setters
