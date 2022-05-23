@@ -21,15 +21,15 @@ public class Artefact {
     private String country;
     @ManyToOne
     @JoinColumn(name = "exhibit_id", nullable = false)
-    private Exhibit exhibit;
+    private Exhibit exhibits;
 
-    public Artefact(Long id, String name, String creator, Date date, String country, Exhibit exhibit) {
+    public Artefact(Long id, String name, String creator, Date date, String country, Exhibit exhibits) {
         this.id = id;
         this.name = name;
         this.creator = creator;
         this.date = date;
         this.country = country;
-        this.exhibit = exhibit;
+        this.exhibits = exhibits;
     }
 
     public Artefact() {
@@ -75,11 +75,11 @@ public class Artefact {
         this.country = country;
     }
 
-    public Exhibit getExhibit() {
-        return exhibit;
+    public Exhibit getExhibits() {
+        return exhibits;
     }
 
-    public void setExhibit(Exhibit exhibit) {
-        this.exhibit = exhibit;
+    public void setExhibits(Exhibit exhibits) {
+        this.exhibits = exhibits;
     }
 }
