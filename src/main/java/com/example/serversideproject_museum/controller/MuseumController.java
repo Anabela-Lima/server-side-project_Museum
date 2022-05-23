@@ -51,7 +51,7 @@ public class MuseumController {
 // delete museum by id
 
     // Accept HTTP DELETE, localhost:8080/deleteMuseum/id
-    @DeleteMapping("/deleteMumseum/{id}")
+    @DeleteMapping("/deleteMuseum/{id}")
     public void deleteMuseum(@PathVariable Long id) {
         museumRepository.deleteById(id);
 
