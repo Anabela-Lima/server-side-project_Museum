@@ -10,7 +10,7 @@ import java.util.List;
 @RestController
 public class ExhibitController {
 
-    public final ExhibitRepository exhibitRepository;
+    private final ExhibitRepository exhibitRepository;
 
     public ExhibitController(ExhibitRepository exhibitRepository) {
         this.exhibitRepository = exhibitRepository;
