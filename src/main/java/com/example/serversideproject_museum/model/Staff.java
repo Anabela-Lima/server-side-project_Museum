@@ -3,8 +3,10 @@ package com.example.serversideproject_museum.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -23,7 +25,7 @@ public class Staff {
     @Column
     private String lastName;
     @Column
-    private Date dob;
+    private LocalDate dob;
     @Column
     private String address;
     @Column
@@ -44,19 +46,28 @@ public Staff(){};
 
 // arg constructor
 
-    public Staff(String firsName, String lastName, Date dob, String address, Integer salary, Set<Exhibit> exhibits) {
+    public Staff(String firsName, String lastName, LocalDate dob, String address, Integer salary) {
         this.id = id;
         this.firsName = firsName;
         this.lastName = lastName;
         this.dob = dob;
         this.address = address;
         this.salary = salary;
-        this.exhibits = exhibits;
+        this.exhibits = new HashSet<>();
+
     }
 
 
     // getters and setters
 
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getFirsName() {
         return firsName;
@@ -74,11 +85,11 @@ public Staff(){};
         this.lastName = lastName;
     }
 
-    public Date getDob() {
+    public LocalDate getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(LocalDate dob) {
         this.dob = dob;
     }
 
@@ -105,4 +116,15 @@ public Staff(){};
     public void setExhibits(Set<Exhibit> exhibits) {
         this.exhibits = exhibits;
     }
+
+
+    // add exhibit to staff method
+    public void addExhibit(Exhibit exhibit) {
+        exhibits.add(exhibit);
+    }
+
+
+
+
+
 }
