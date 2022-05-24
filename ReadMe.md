@@ -34,11 +34,11 @@ localhost:8080/ ...
 | `.../deleteMuseum/{id}`                         | `GET`        | Demolish museum           |
 | `.../exhibits `                                 | `GET`        | Get all exhibits          |
 | `.../exhibit/{id} `                             | `GET`        | Get exhibit by id         |
-| `.../exhibits`                                  | `POST`       | build an exhibition room  |
+| `.../exhibits`                                  | `POST`       | Build an exhibition room  |
 | `.../exhibits/{id} `                            | `PUT`        | Update an Exhibition room |
 | `.../exhibits/{id} `                            | `DELETE`     | Demolish exhibition room  |
 | `.../artefacts `                                | `GET`        | Get all artefacts         |
-| `.../artefacts/{country}`                       | `GET`        | get artefact by country   |
+| `.../artefacts/{country}`                       | `GET`        | Get artefact by country   |
 | `.../artefacts `                                | `POST`       | Make an artefact          |
 | `.../artefacts/{id}`                            | `DELETE`     | Destroy an artefact       |
 
