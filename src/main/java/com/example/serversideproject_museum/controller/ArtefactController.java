@@ -16,24 +16,28 @@ public class ArtefactController {
         this.artefactRepository = artefactRepository;
     }
 
+    // Get all arefacts method
     @GetMapping("/artefacts")
     public ResponseEntity<List<Artefact>> getAllArtefacts(){
         List<Artefact> artefacts = artefactRepository.findAll();
         return ResponseEntity.ok().body(artefacts);
     }
 
+    // get artefact by id method
     @GetMapping("artefacts/{country}")
     public ResponseEntity<List<Artefact>> getByArtefactcountry(@PathVariable("country") String country){
         List<Artefact> artefacts = artefactRepository.findByCountry(country);
         return ResponseEntity.ok().body(artefacts);
     }
 
+    // create an artefact method
     @PostMapping("/artefacts")
     public ResponseEntity<Artefact> addArtefact(@RequestBody Artefact artefact){
         Artefact newArtefact = artefactRepository.save(artefact);
         return ResponseEntity.ok().body(newArtefact);
     }
 
+    // delete an artefact method
     @DeleteMapping("artefacts/{id}")
     public ResponseEntity<String> deleteArtefact(@PathVariable Long id){
         artefactRepository.findById(id);
