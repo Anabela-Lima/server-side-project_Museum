@@ -13,14 +13,16 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 
 import javax.transaction.Transactional;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 class ServerSideProjectMuseumApplicationTests {
@@ -85,10 +87,45 @@ class ServerSideProjectMuseumApplicationTests {
 
         @Transactional
         @Test
-        @DisplayName("Can add an exhibit to the museum")
+        @DisplayName("Can add existing exhibit to the museum")
         public void canAddExhibitToMuseum(){
             Museum museum = museumService.addExhibit(1L, 20L);
             assertEquals(5, museum.getExhibits().size());
+        }
+
+        @Transactional
+        @Test
+        @DisplayName("Can add a new exhibit to the museum")
+        public void canAddNewExhibitToMuseum(){
+            Exhibit exhibit = exhibitRepository.save(new Exhibit("Test Exhibit"));
+            Museum museum = museumService.addExhibit(1L, 28L);
+            assertEquals(5, museum.getExhibits().size());
+        }
+
+        @Transactional
+        @Test
+        @DisplayName("Can add existing exhibit to new museum")
+        public void canAddExhibitToNewMuseum(){
+            Museum museum = museumService.addMuseum("Test Museum", Country.Afghanistan);
+            assertEquals(0, museum.getExhibits().size());
+            Museum updatedMuseum = museumService.addExhibit(21L, 1L);
+            assertEquals(1, updatedMuseum.getExhibits().size());
+        }
+
+        @Transactional
+        @Test
+        @DisplayName("Can add new exhibit to new museum")
+        public void canAddNewExhibitToNewMuseum(){
+            Museum museum = museumService.addMuseum("Test Museum", Country.Afghanistan);
+            Exhibit exhibit = exhibitRepository.save(new Exhibit("Test Exhibit"));
+            assertEquals(21, museumRepository.findAll().size());
+            assertEquals(28, exhibitRepository.findAll().size());
+            assertEquals(0, museum.getExhibits().size());
+            assertTrue(museum.getExhibits().isEmpty());
+            assertNull(exhibit.getMuseum());
+            Museum updatedMuseum = museumService.addExhibit(21L, 28L);
+            //assertEquals("Test Exhibit", exhibitRepository.findById(28L).orElseThrow().getName());
+            //assertEquals(1, updatedMuseum.getExhibits().size());
         }
     }
 
