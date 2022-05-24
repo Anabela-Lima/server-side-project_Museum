@@ -23,7 +23,7 @@ public class ArtefactController {
     }
 
     @GetMapping("artefacts/{country}")
-    public ResponseEntity<List<Artefact>> getByArtefactId(@PathVariable("country") String country){
+    public ResponseEntity<List<Artefact>> getByArtefactcountry(@PathVariable("country") String country){
         List<Artefact> artefacts = artefactRepository.findByCountry(country);
         return ResponseEntity.ok().body(artefacts);
     }
