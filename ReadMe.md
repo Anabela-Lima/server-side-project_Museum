@@ -4,7 +4,7 @@ The globe at your fingertips
 
 Ana, James, Falak, Maisha
 
-<img src=“https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer/0f/97/0f970dc5-a0db-4960-8607-488ac3f83742/virtualvisit.jpg”>
+![Muse360](https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer/0f/97/0f970dc5-a0db-4960-8607-488ac3f83742/virtualvisit.jpg)
 
 
 ## Project Description
@@ -48,10 +48,9 @@ localhost:8080/ ...
 
 // INCLUDE GITHUB LINKS FOR OTHER MEMBERS
 
-- [Ana Bela Lima](https://github.com//ana-bela-lima)
-- [James Stilman](https://github.com/)
-- [Falak ](https://github.com//)
-- [Maisha Islam](https://github.com//)
-- 
+- [Ana Bela Lima] (https://github.com/ana-bela-lima)
+- [James Stilman] (https://github.com/JStillman1)
+- [Falak ] (https://github.com/Falakhan)
+- [Maisha Islam] (https://github.com/maisha-i)
 
 
