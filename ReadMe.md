@@ -2,7 +2,7 @@
 
 The globe at your fingertips
 
-Ana, James, Falak, Maisha
+Ana Bela, James, Falak, Maisha
 
 ![Muse360](https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer/0f/97/0f970dc5-a0db-4960-8607-488ac3f83742/virtualvisit.jpg)
 
@@ -46,9 +46,8 @@ localhost:8080/ ...
 
 ## Acknowledgements
 
-// INCLUDE GITHUB LINKS FOR OTHER MEMBERS
 
-- [Ana Bela Lima] (https://github.com/ana-bela-lima)
+- [Ana Bela Lima] (https://github.com/anabela-lima)
 - [James Stilman] (https://github.com/JStillman1)
 - [Falak ] (https://github.com/Falakhan)
 - [Maisha Islam] (https://github.com/maisha-i)
