@@ -36,7 +36,7 @@ public class ArtefactController {
 
     @DeleteMapping("artefacts/{id}")
     public ResponseEntity<String> deleteArtefact(@PathVariable Long id){
-        artefactRepository.getById(id);
+        artefactRepository.findById(id);
         return ResponseEntity.ok("Artefact with id" +id +" has been removed from database.");
     }
 
