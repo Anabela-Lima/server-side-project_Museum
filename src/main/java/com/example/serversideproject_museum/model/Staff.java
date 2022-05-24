@@ -21,7 +21,7 @@ public class Staff {
     @Column
     private Long id;
     @Column
-    private String firsName;
+    private String firstName;
     @Column
     private String lastName;
     @Column
@@ -48,7 +48,7 @@ public Staff(){};
 
     public Staff(String firsName, String lastName, LocalDate dob, String address, Integer salary) {
         this.id = id;
-        this.firsName = firsName;
+        this.firstName = firsName;
         this.lastName = lastName;
         this.dob = dob;
         this.address = address;
@@ -70,11 +70,11 @@ public Staff(){};
     }
 
     public String getFirsName() {
-        return firsName;
+        return firstName;
     }
 
     public void setFirsName(String firsName) {
-        this.firsName = firsName;
+        this.firstName = firsName;
     }
 
     public String getLastName() {
@@ -128,7 +128,7 @@ public Staff(){};
     public String toString() {
         return "Staff{" +
                 "id=" + id +
-                ", firsName='" + firsName + '\'' +
+                ", firsName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", dob=" + dob +
                 ", address='" + address + '\'' +

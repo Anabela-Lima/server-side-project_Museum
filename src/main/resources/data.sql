@@ -160,8 +160,8 @@ insert into STAFF (id, first_name, last_name, dob, address, salary) values (2, '
 insert into STAFF (id, first_name, last_name, dob, address, salary) values (3, 'Erica', 'Trevithick', '1994-08-14', '94 Mcguire Hill', 18181);
 insert into STAFF (id, first_name, last_name, dob, address, salary) values (4, 'Cacilia', 'Frawley', '2008-09-30', '2717 Division Terrace', 26135);
 insert into STAFF (id, first_name, last_name, dob, address, salary) values (5, 'Robbyn', 'Notley', '1998-04-24', '510 Swallow Trail', 20872);
-insert into STAFF (id, first_name, last_name, dob, address, salary) values (6, 'Cross', 'Blaxley', '1990-02-05', '513 Meadow Vale Lane', 20155.);
-insert into STAFF (id, first_name, last_name, dob, address, salary) values (7, 'Marni', 'Keppin', '2004-04-07', '74 Glacier Hill Center', 25236.);
+insert into STAFF (id, first_name, last_name, dob, address, salary) values (6, 'Cross', 'Blaxley', '1990-02-05', '513 Meadow Vale Lane', 20155);
+insert into STAFF (id, first_name, last_name, dob, address, salary) values (7, 'Marni', 'Keppin', '2004-04-07', '74 Glacier Hill Center', 25236);
 insert into STAFF (id, first_name, last_name, dob, address, salary) values (8, 'Zahara', 'Copeland', '1998-06-19', '778 Killdeer Trail', 21457);
 insert into STAFF (id, first_name, last_name, dob, address, salary) values (9, 'Lindy', 'Denslow', '2009-03-24', '5101 Oak Avenue', 19835);
 insert into STAFF (id, first_name, last_name, dob, address, salary) values (10, 'Haze', 'Neilson', '1994-09-11', '7192 Cascade Center', 26285);
