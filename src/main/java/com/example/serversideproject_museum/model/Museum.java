@@ -18,8 +18,9 @@ import static javax.persistence.CascadeType.ALL;
  |   country             :  Country         |
  |   exhibits            :  Set<Exhibit>    |
  +------------------------------------------+
+ |   Constructors                           |
  |   Getters & Setters                      |
- +------------------------------------------|
+ +------------------------------------------+
  |   addExhibit(Exhibit) :  void            |
  +------------------------------------------+
 
@@ -104,7 +105,8 @@ public class Museum {
 
     //   Other methods
 
-    /* addExhibit  - Adds an exhibit to the existing set
+    /* addExhibit
+    *      Adds an exhibit to the existing set of exhibits housed in the museum
     *
     *  @Param Exhibit - Exhibit to add to current Set of exhibits
     *

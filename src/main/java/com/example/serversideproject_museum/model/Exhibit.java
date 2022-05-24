@@ -17,13 +17,14 @@ import java.util.Set;
  |   staff     :  Set<Staff>      |
  |   museum    :  Museum          |
  +--------------------------------+
+ |   Constructors                 |
  |   Getters & Setters            |
  +--------------------------------+
 
  */
 
 @Entity
-@Table
+@Table(name = "exhibits")
 public class Exhibit {
 
     //   Exhibit properties

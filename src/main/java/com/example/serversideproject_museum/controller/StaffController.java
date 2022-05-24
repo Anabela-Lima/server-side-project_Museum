@@ -88,22 +88,24 @@ public class StaffController {
     }
 
    // fire staff method- delete
-   @DeleteMapping("/fireStaff/{id}")
-   public ResponseEntity<String> fireStaff(@PathVariable Long id) {
-
-       List<Long> staffIds = staffService.getAllStaff().stream().map(Staff::getId)
-               .filter(f -> f.equals(id)).toList();
-       if (!staffIds.isEmpty()) {
-           ResponseEntity<String> outputName = ResponseEntity.ok("Staff" + staffService
-                   .getStaff(id)
-                   .stream()
-                   .map(Staff::getFirsName).collect(toList())
-                   + " has been fired from the Museum and is no longer in our records");
-           staffRepository.deleteById(id);
-           return outputName;
-       }
-       return ResponseEntity.badRequest().build();
-   }
+//   @DeleteMapping("/fireStaff/{id}")
+//   public ResponseEntity<String> fireStaff(@PathVariable Long id) {
+////
+////       List<Long> staffIds = staffService.getAllStaff().stream().map(Staff::getId)
+////               .filter(f -> f.equals(id)).toList();
+//       Staff staffToFire = staffRepository.findById(id).orElseThrow();
+//
+////       if (staff) {
+////           ResponseEntity<String> outputName = ResponseEntity.ok("Staff" + staffService
+////                   .getStaff(id)
+////                   .stream()
+////                   .map(Staff::getFirstName).collect(toList())
+////                   + " has been fired from the Museum and is no longer in our records");
+////           staffRepository.deleteById(id);
+////           return outputName;
+////       }
+//       return ResponseEntity.badRequest().build();
+//   }
 
 
 
