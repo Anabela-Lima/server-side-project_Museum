@@ -2,7 +2,7 @@
 
 The globe at your fingertips
 
-Ana, James, Falak, Maisha
+Ana Bela, James, Falak, Maisha
 
 ![Muse360](https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer/0f/97/0f970dc5-a0db-4960-8607-488ac3f83742/virtualvisit.jpg)
 
