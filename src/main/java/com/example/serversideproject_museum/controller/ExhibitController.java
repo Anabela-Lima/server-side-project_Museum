@@ -25,6 +25,8 @@ public class ExhibitController {
         this.exhibitService = exhibitService;
     }
 
+
+    // get all exhbits method
     @GetMapping(path = "/exhibits")
     public ResponseEntity<List<Exhibit>> getAllExhibit() {
         List<Exhibit> exhibits = exhibitService.getAllExhibit();
@@ -39,11 +41,14 @@ public class ExhibitController {
         return ResponseEntity.ok().body(exhibit);
     }
 
+    // create an exhibit
     @PostMapping("/exhibits")
     public ResponseEntity<Exhibit> addExhibit(@RequestBody Exhibit exhibit){
         Exhibit newExhibit = exhibitRepository.save(exhibit);
         return ResponseEntity.ok().body(newExhibit);
     }
+
+    // update an exhibit by id
 
     @PutMapping("exhibits/{id}")
     public ResponseEntity<Exhibit> updateExhibit(@RequestBody Exhibit exhibit, @PathVariable Long id){
@@ -54,6 +59,7 @@ public class ExhibitController {
         return ResponseEntity.ok().body(update);
     }
 
+    // delete an exhibit by id
     @DeleteMapping("exhibits/{id}")
     public ResponseEntity<String> deleteArtefact(@PathVariable Long id){
         exhibitRepository.findById(id);
