@@ -2,7 +2,7 @@
 
 The globe at your fingertips
 
-Ana, James, Falak, Maisha
+Ana Bela, James, Falak, Maisha
 
 ![Muse360](https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer/0f/97/0f970dc5-a0db-4960-8607-488ac3f83742/virtualvisit.jpg)
 
@@ -34,11 +34,11 @@ localhost:8080/ ...
 | `.../deleteMuseum/{id}`                         | `GET`        | Demolish museum           |
 | `.../exhibits `                                 | `GET`        | Get all exhibits          |
 | `.../exhibit/{id} `                             | `GET`        | Get exhibit by id         |
-| `.../exhibits`                                  | `POST`       | build an exhibition room  |
+| `.../exhibits`                                  | `POST`       | Build an exhibition room  |
 | `.../exhibits/{id} `                            | `PUT`        | Update an Exhibition room |
 | `.../exhibits/{id} `                            | `DELETE`     | Demolish exhibition room  |
 | `.../artefacts `                                | `GET`        | Get all artefacts         |
-| `.../artefacts/{country}`                       | `GET`        | get artefact by country   |
+| `.../artefacts/{country}`                       | `GET`        | Get artefact by country   |
 | `.../artefacts `                                | `POST`       | Make an artefact          |
 | `.../artefacts/{id}`                            | `DELETE`     | Destroy an artefact       |
 
@@ -47,10 +47,9 @@ localhost:8080/ ...
 ## Acknowledgements
 
 
-- ![Ana Bela Lima](https:/github.com/ana-bela-lima)
-- ![James Stilman](https:/github.com/JStillman1/)
-- ![Falak ](https:/github.com/Falakhan)
-- ![Maisha Islam](https://github.com/maisha-i)
-
+- [Ana Bela Lima] (https://github.com/anabela-lima)
+- [James Stilman] (https://github.com/JStillman1)
+- [Falak ] (https://github.com/Falakhan)
+- [Maisha Islam] (https://github.com/maisha-i)
 
 

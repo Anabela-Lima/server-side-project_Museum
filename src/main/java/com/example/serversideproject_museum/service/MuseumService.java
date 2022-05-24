@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+// Service annotation
 @Service
 public class MuseumService {
 
@@ -21,6 +22,7 @@ public class MuseumService {
         this.museumRepository = museumRepository;
     }
 
+    // get all museums
     public List<Museum> findAll() {
         return museumRepository.findAll();
     }

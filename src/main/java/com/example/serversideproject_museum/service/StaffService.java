@@ -10,8 +10,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-@Service
-public class StaffService {
+    // service annotation 
+    @Service
+    public class StaffService {
 
     // get All staff
 
@@ -22,11 +23,10 @@ public class StaffService {
         return staffRepository.findAll();
     }
 
- // staff by id
+    // staff by id
 
     public Optional<Staff> getStaff(Long id) {
         return staffRepository.findById(id);
     }
-
 
 }

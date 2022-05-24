@@ -8,6 +8,7 @@ import java.util.Set;
 
 /*
 
+ UML Diagram: Exhibit
  +--------------------------------+
  |         Exhibit                |
  +--------------------------------+
@@ -75,17 +76,21 @@ public class Exhibit {
     *
     * Relationship - Many exhibits can be in the same one museum
     */
+ 
     @ManyToOne
+ 
     private Museum museum;
 
 
-    //   Constructors
+    //   Constructors (2)
 
     // No argument constructor
+ 
     public Exhibit() {
     }
 
     // Standard Constructor
+ 
     public Exhibit(String name) {
         this.name = name;
     }
@@ -104,6 +109,7 @@ public class Exhibit {
     }
 
     //For the artefacts property:
+ 
     public Set<Artefact> getArtefacts() {
         return artefacts;
     }
@@ -112,6 +118,7 @@ public class Exhibit {
     }
 
     //For the staff property:
+ 
     public Set<Staff> getStaff() {
         return staff;
     }
@@ -120,6 +127,7 @@ public class Exhibit {
     }
 
     //For the museum property:
+ 
     public Museum getMuseum() {
         return museum;
     }

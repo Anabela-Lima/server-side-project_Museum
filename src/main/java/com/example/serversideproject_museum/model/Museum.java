@@ -10,6 +10,7 @@ import static javax.persistence.CascadeType.ALL;
 
 /*
 
+UML Diagram: Museum 
  +------------------------------------------+
  |         Museum                           |
  +------------------------------------------+
@@ -63,7 +64,7 @@ public class Museum {
     //   Constructors
 
     /*  Basic Constructor
-    *   @Param name - Name of the new museum to be instantiated
+     *   @Param name - Name of the new museum to be instantiated
      */
     public Museum(String name) {
         this.name = name;
