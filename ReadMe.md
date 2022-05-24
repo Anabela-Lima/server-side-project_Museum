@@ -48,7 +48,7 @@ localhost:8080/ ...
 
 // INCLUDE GITHUB LINKS FOR OTHER MEMBERS
 
-- [Ana Bela Lima] (https://github.com/ana-bela-lima)
+- [Ana Bela Lima] (https://github.com/anabela-lima)
 - [James Stilman] (https://github.com/JStillman1)
 - [Falak ] (https://github.com/Falakhan)
 - [Maisha Islam] (https://github.com/maisha-i)
