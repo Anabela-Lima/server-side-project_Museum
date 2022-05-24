@@ -22,8 +22,8 @@ import java.util.Optional;
 
     // Service method- get by id 
     
-    public  Optional<Exhibit> getExhibit(Long id) {
-      return exhibitRepository.findById(id);
+    public  Exhibit getExhibit(Long id) {
+      return exhibitRepository.findById(id).orElseThrow();
     }
 
     // service method to get all Exhibition rooms 

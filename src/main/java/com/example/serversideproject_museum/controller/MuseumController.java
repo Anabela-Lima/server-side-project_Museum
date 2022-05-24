@@ -149,11 +149,9 @@ public class MuseumController {
             @PathVariable Long exhibit_id   // id of exhibit to add
     )
     {
-        Museum museum = museumService.getMuseum(museum_id);   //Museum to add to
-        Exhibit exhibit = exhibitService.getExhibit(exhibit_id).orElseThrow(); //Exhibit to add
-        museum.addExhibit(exhibit);  //Perform the add
-        exhibit.setMuseum(museum);  //Sets the exhibit's museum
-        return ResponseEntity.ok().body(museum);
+        Museum updatedMuseum = museumService.addExhibit(museum_id, exhibit_id);
+
+        return ResponseEntity.ok().body(updatedMuseum);
     }
 
 

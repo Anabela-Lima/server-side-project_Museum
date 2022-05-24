@@ -36,8 +36,8 @@ public class ExhibitController {
     // get exhibit by id- done
 
     @GetMapping(path = "/exhibit/{id}")
-    public ResponseEntity<java.util.Optional<Exhibit>> getAnExhibit(@PathVariable Long id ) {
-        Optional<Exhibit> exhibit = exhibitService.getExhibit(id);
+    public ResponseEntity<Exhibit> getAnExhibit(@PathVariable Long id ) {
+        Exhibit exhibit = exhibitService.getExhibit(id);
         return ResponseEntity.ok().body(exhibit);
     }
 

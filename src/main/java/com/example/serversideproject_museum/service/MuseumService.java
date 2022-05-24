@@ -18,9 +18,11 @@ import java.util.Set;
 public class MuseumService {
 
     private final MuseumRepository museumRepository;
+    private final ExhibitService exhibitService;
 
-    public MuseumService(MuseumRepository museumRepository){
+    public MuseumService(MuseumRepository museumRepository, ExhibitService exhibitService){
         this.museumRepository = museumRepository;
+        this.exhibitService = exhibitService;
     }
 
     // get all museums
@@ -47,6 +49,14 @@ public class MuseumService {
 
     public List<Museum> findByCountry(Country country) {
         return museumRepository.findByCountry(country);
+    }
+
+    public Museum addExhibit(Long museum_id, Long exhibit_id) {
+        Museum museum = getMuseum(museum_id);   //Museum to add to
+        Exhibit exhibit = exhibitService.getExhibit(exhibit_id); //Exhibit to add
+        museum.addExhibit(exhibit);  //Perform the add
+        exhibit.setMuseum(museum);  //Sets the exhibit's museum
+        return museum;
     }
 }
 

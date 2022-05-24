@@ -82,7 +82,7 @@ public class StaffController {
     public ResponseEntity<Exhibit>addExhibitID(@PathVariable Long staff_id, @PathVariable Long exhibit_id){
 
         Staff staff = staffService.getStaff(staff_id).orElseThrow();
-        Exhibit exhibit = exhibitService.getExhibit(exhibit_id).orElseThrow();
+        Exhibit exhibit = exhibitService.getExhibit(exhibit_id);
         staff.addExhibit(exhibit);
         return ResponseEntity.ok().build();
     }
