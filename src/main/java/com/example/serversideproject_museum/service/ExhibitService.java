@@ -17,7 +17,6 @@ public class ExhibitService {
     //  linking Exhibit service to ExhibitRepository
     
     @Autowired
-    
     ExhibitRepository exhibitRepository;
 
 
