@@ -121,7 +121,7 @@ public Staff(){};
 
     // add exhibit to staff method
     public void addExhibit(Exhibit exhibit) {
-        exhibits.add(exhibit);
+        this.exhibits.add(exhibit);
     }
 
 

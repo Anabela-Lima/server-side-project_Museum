@@ -79,7 +79,7 @@ class ServerSideProjectMuseumApplicationTests {
 
     @Test
     public void canFindById() {
-        Exhibit found = exhibitRepository.getReferenceById(1L);
-        assertEquals("UnitedStates", found.getName());
+        Exhibit found = exhibitRepository.findById(1L).orElseThrow();
+        assertEquals("Ancient Egypt", found.getName());
     }
 }
