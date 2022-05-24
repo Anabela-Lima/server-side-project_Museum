@@ -4,6 +4,7 @@ import com.example.serversideproject_museum.model.Exhibit;
 import com.example.serversideproject_museum.model.Staff;
 import com.example.serversideproject_museum.repository.ExhibitRepository;
 import com.example.serversideproject_museum.service.ExhibitService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +12,7 @@ import java.util.List;
 
 @RestController
 public class ExhibitController {
+
 
     private final ExhibitService exhibitService;
 

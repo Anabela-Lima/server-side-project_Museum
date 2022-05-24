@@ -57,9 +57,10 @@ class ServerSideProjectMuseumApplicationTests {
 
     @Test
     public void canFindByCountry() {
-        Artefact found = (Artefact) artefactRepository.findByCountry("UnitedStates");
-        assertEquals("UnitedStates", found.getCountry());
-
+        List<Artefact> found =  artefactRepository.findByCountry("UnitedStates");
+        for (Artefact artefact: found) {
+            assertEquals("UnitedStates", artefact.getCountry());
+        }
     }
 
     @Test
