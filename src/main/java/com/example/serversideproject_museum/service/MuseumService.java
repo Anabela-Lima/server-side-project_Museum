@@ -22,15 +22,13 @@ public class MuseumService {
     }
 
     public List<Museum> findAll() {
-
         return museumRepository.findAll();
     }
 
 
     // get museum
-
-    public Optional<Museum> getMuseum(Long id) {
-        return museumRepository.findById(id);
+    public Museum getMuseum(Long id) {
+        return museumRepository.findById(id).orElseThrow();
     }
 
 

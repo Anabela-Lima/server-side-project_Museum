@@ -64,11 +64,11 @@ public class StaffController {
     // Post for staff
 
     @PostMapping("/HireStaff")
-    public ResponseEntity<Staff> hireStaff(@RequestParam(required = true) String firstName,
-                                           @RequestParam(required = true) String lastName,
-                                           @RequestParam(required = true) int age,
-                                           @RequestParam(required = true ) String address,
-                                           @RequestParam (required = true) Integer salary ) {
+    public ResponseEntity<Staff> hireStaff(@RequestParam String firstName,
+                                           @RequestParam String lastName,
+                                           @RequestParam int age,
+                                           @RequestParam String address,
+                                           @RequestParam Integer salary ) {
         LocalDate dob = LocalDate.now().minusYears(age);
 
         staffRepository.save(new Staff(firstName,lastName,dob, address,salary));

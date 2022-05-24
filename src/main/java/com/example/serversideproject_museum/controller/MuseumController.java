@@ -2,7 +2,6 @@ package com.example.serversideproject_museum.controller;
 
 import com.example.serversideproject_museum.model.Exhibit;
 import com.example.serversideproject_museum.model.Museum;
-import com.example.serversideproject_museum.repository.ArtefactRepository;
 import com.example.serversideproject_museum.repository.MuseumRepository;
 import com.example.serversideproject_museum.service.ExhibitService;
 import com.example.serversideproject_museum.service.MuseumService;
@@ -12,8 +11,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
+/*
+*   MuseumController  -- API Layer
+*   - Handles creation, deletion, updates to museum objects in museum repository
+*   - Endpoints available:
+*       - Get:
+*           - /museum  - returns a list of all museums in the repository
+*           - /museum/{id}  - r
+*/
 @RestController
 @RequestMapping("/museum")
 public class MuseumController {
@@ -28,58 +34,50 @@ public class MuseumController {
     MuseumRepository museumRepository;
 
 
-
-
-    public MuseumController(MuseumService museumService){
+    public MuseumController(MuseumService museumService) {
         this.museumService = museumService;
     }
+
     @GetMapping
-    public List<Museum> getMuseums(){
+    public List<Museum> getAllMuseums() {
         return museumService.findAll();
     }
 
 
-
-// get museum by id
-    @GetMapping("/museum/{id}")
-    public Optional<Museum> getMuseum(@PathVariable Long id) {
+    // get museum by id
+    @GetMapping("/{id}")
+    public Museum getMuseumById(@PathVariable Long id) {
         return museumService.getMuseum(id);
-
     }
 
 
 // delete museum by id
 
-    // Accept HTTP DELETE, localhost:8080/deleteMuseum/id
-    @DeleteMapping("/deleteMuseum/{id}")
-    public void deleteMuseum(@PathVariable Long id) {
+    // Accept HTTP DELETE, localhost:8080/deleteMuseumById/id
+    @DeleteMapping("/delete/{id}")
+    public void deleteMuseumById(@PathVariable Long id) {
         museumRepository.deleteById(id);
-
     }
 
- // Post for museum
+    // Post for museum
 
-    @PostMapping("/CreateMuseum")
+    @PostMapping("/Create")
     public ResponseEntity<Museum> addMuseum(
-            @RequestParam(required = true) String name)  // id for exhibit
+            @RequestParam String name)  // Name for new exhibit
     {
-           museumService.addMuseum(name);
-            return ResponseEntity.ok().build();
+        museumService.addMuseum(name);
+        return ResponseEntity.ok().build();
     }
 
- // putMapping
+    // putMapping
 
- @PutMapping("/museum/{museum_id}/exhibit/{exhibit_id}")
-    public ResponseEntity<Exhibit>addExhibitID(@RequestParam @PathVariable Long museum_id, @PathVariable Long exhibit_id){
-
-        Museum museum = museumService.getMuseum(museum_id).orElseThrow();
+    @PutMapping("{museum_id}/exhibit/{exhibit_id}")
+    public ResponseEntity<Exhibit> addExhibitToMuseum(@PathVariable Long museum_id, @PathVariable Long exhibit_id) {
+        Museum museum = museumService.getMuseum(museum_id);
         Exhibit exhibit = exhibitService.getExhibit(exhibit_id).orElseThrow();
         museum.addExhibit(exhibit);
         return ResponseEntity.ok().build();
- }
-
-
-
+    }
 
 
 //
