@@ -14,9 +14,8 @@ import static javax.persistence.GenerationType.IDENTITY;
 public class Museum {
 
     @Id
-    @GeneratedValue(strategy = IDENTITY)
-
-
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "your_custom_sequence")
+    @SequenceGenerator(name="your_custom_sequence", allocationSize=1, initialValue = 21)
     private Long id;
     private String name;
 
@@ -36,6 +35,7 @@ public class Museum {
     }
 
     public Museum(String name) {
+        this.id = id;
         this.name = name;
     }
 
