@@ -21,21 +21,21 @@ public class Exhibit {
     @Column
     private String name;
 
+    @Column
     @JsonIgnoreProperties(value = "exhibits")
     @OneToMany(mappedBy = "exhibits", cascade = CascadeType.ALL)    //- relationship between exhibit and artefacts - one exhit has many artifcats
     private Set<Artefact> artefacts;
 
 
-
+    @Column
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "assignments",
             joinColumns = @JoinColumn(name = "staff_id"),
             inverseJoinColumns = @JoinColumn(name = "exhibit_id")
     )
+    private Set<Staff> staff;
 
-    @JsonIgnoreProperties(value = "exhibits")
-    private Set <Staff> staff;
 
     @ManyToOne   // relationship between Exhibits and Museum - many exhibits in 1 museum
     private Museum museum;
@@ -55,7 +55,6 @@ public class Exhibit {
         this.artefacts = artefacts;
         this.staff= staff;
         this.museum= museum;
-
     }
 
 

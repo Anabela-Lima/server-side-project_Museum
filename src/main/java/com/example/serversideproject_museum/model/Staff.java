@@ -17,11 +17,12 @@ public class Staff {
 // properties
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "name")
+    @SequenceGenerator(name = "name", sequenceName = "staff_sequence", allocationSize= 1, initialValue = 51)
     @Column
     private Long id;
     @Column
-    private String firsName;
+    private String firstName;
     @Column
     private String lastName;
     @Column
@@ -48,7 +49,7 @@ public Staff(){};
 
     public Staff(String firsName, String lastName, LocalDate dob, String address, Integer salary) {
         this.id = id;
-        this.firsName = firsName;
+        this.firstName = firsName;
         this.lastName = lastName;
         this.dob = dob;
         this.address = address;
@@ -70,11 +71,11 @@ public Staff(){};
     }
 
     public String getFirsName() {
-        return firsName;
+        return firstName;
     }
 
     public void setFirsName(String firsName) {
-        this.firsName = firsName;
+        this.firstName = firsName;
     }
 
     public String getLastName() {
@@ -120,7 +121,7 @@ public Staff(){};
 
     // add exhibit to staff method
     public void addExhibit(Exhibit exhibit) {
-        exhibits.add(exhibit);
+        this.exhibits.add(exhibit);
     }
 
 
@@ -128,7 +129,7 @@ public Staff(){};
     public String toString() {
         return "Staff{" +
                 "id=" + id +
-                ", firsName='" + firsName + '\'' +
+                ", firsName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", dob=" + dob +
                 ", address='" + address + '\'' +
