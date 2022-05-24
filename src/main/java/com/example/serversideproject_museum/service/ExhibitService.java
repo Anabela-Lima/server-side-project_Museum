@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-    // Service annotation - superpowers 
+    // Service annotation 
     @Service
-public class ExhibitService {
+    public class ExhibitService {
 
     
     //  linking Exhibit service to ExhibitRepository
