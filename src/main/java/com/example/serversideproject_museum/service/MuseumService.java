@@ -12,20 +12,21 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+// Service annotation 
 @Service
-public class MuseumService {
-
+    public class MuseumService {
+         
     private final MuseumRepository museumRepository;
 
     public MuseumService(MuseumRepository museumRepository){
         this.museumRepository = museumRepository;
     }
 
+    // get all museums 
     public List<Museum> findAll() {
 
         return museumRepository.findAll();
     }
-
 
     // get museum
 
@@ -35,11 +36,10 @@ public class MuseumService {
 
 
     // add museum
+        
     public void addMuseum(String name) {
         museumRepository.save(new Museum(name));
     }
-
-
 
 }
 
