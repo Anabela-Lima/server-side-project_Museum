@@ -71,7 +71,7 @@ public class StaffController {
         LocalDate dob = LocalDate.now().minusYears(age);
 
         staffRepository.save(new Staff(firstName,lastName,dob, address,salary));
-        System.out.println("Employee" + firstName + "has been hired!");
+        System.out.println("Employee " + firstName + "has been hired!");
         return ResponseEntity.ok().build();
     }
 
@@ -90,15 +90,17 @@ public class StaffController {
     @DeleteMapping("/fireStaff/{id}")
 
     public ResponseEntity<String> fireStaff(@PathVariable Long id) {
-        staffRepository.deleteById(id);
+
         List<Long> staffIds = staffService.getAllStaff().stream().map(Staff::getId)
                 .filter(f -> f.equals(id)).toList();
-        if (staffIds.isEmpty())
-        {return ResponseEntity.ok("Staff" + staffService
+        if (!staffIds.isEmpty())
+        {ResponseEntity<String> OUT = ResponseEntity.ok("Staff" + staffService
                 .getStaff(id)
                 .stream()
                 .map(Staff::getFirsName).collect(toList())
-                + " has been fired from the Museum and is no longer in our records");}
+                + " has been fired from the Museum and is no longer in our records") ;
+            staffRepository.deleteById(id);
+            return OUT;}
 
         return ResponseEntity.badRequest().build();
     }
@@ -107,6 +109,27 @@ public class StaffController {
 
 
 
+//    // fire staff method- delete
+//    @DeleteMapping("/fireStaff/{id}")
+//
+//    public ResponseEntity<String> fireStaff(@PathVariable Long id) {
+//        staffRepository.deleteById(id);
+//        List<Long> staffIds = staffService.getAllStaff().stream().map(Staff::getId)
+//                .filter(f -> f.equals(id)).toList();
+//        if (staffIds.isEmpty())
+//        {return ResponseEntity.ok("Staff" + staffService
+//                .getStaff(id)
+//                .stream()
+//                .map(Staff::getFirsName).collect(toList())
+//                + " has been fired from the Museum and is no longer in our records");}
+//
+//        return ResponseEntity.badRequest().build();
+//    }
+//
+//
+//
+//
+//
 
 
 
