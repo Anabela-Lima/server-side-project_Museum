@@ -33,11 +33,13 @@ public class MuseumService {
 
 
     // add museum
-    public void addMuseum(String name) {
-        museumRepository.save(new Museum(name));
+    public Museum addMuseum(String name) {
+        return museumRepository.save(new Museum(name));
     }
 
 
-
+    public void deleteById(Long id) {
+        museumRepository.deleteById(id);
+    }
 }
 

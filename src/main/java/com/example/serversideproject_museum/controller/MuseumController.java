@@ -18,65 +18,145 @@ import java.util.Optional;
 *   - Endpoints available:
 *       - Get:
 *           - /museum  - returns a list of all museums in the repository
-*           - /museum/{id}  - r
+*           - /museum/{id}  - returns a specific museum by id
+*       - Post:
+*           - /museum/create  - to add a new museum
+*       - Put:
+*           - /museum/{museum_id}/exhibit/{exhibit_id}  - to add an exhibit to a museum
+*       - Delete:
+*           - /museum/delete/{id}  - delete a museum by its id
 */
+
 @RestController
 @RequestMapping("/museum")
 public class MuseumController {
 
-    @Autowired
-    MuseumService museumService;
+    //   MuseumController Properties
 
-    @Autowired
-    ExhibitService exhibitService;
+    // MuseumService - museumService - To link controller up with museum service layer
+    private final MuseumService museumService;
 
-    @Autowired
-    MuseumRepository museumRepository;
+    // ExhibitService - exhibitService - To link controller with exhibit service layer
+    private final ExhibitService exhibitService;
 
 
-    public MuseumController(MuseumService museumService) {
+    //   Constructor
+
+    // Initiate controller to include exhibitService and museumService
+    public MuseumController(MuseumService museumService, ExhibitService exhibitService) {
         this.museumService = museumService;
+        this.exhibitService = exhibitService;
     }
 
+    // =======================================================================================================================
+    //                    Endpoints
+    // =======================================================================================================================
+
+    //  +--------+
+    //  |   Get  |
+    //  +--------+
+
+    /*
+    *   /museum
+    *       - returns a list of all museums available in the repository
+    *         by calling findAll() in the museum service layer
+    *
+    * @return List<Museum> - List of all museums in the repository
+    *
+     */
     @GetMapping
     public List<Museum> getAllMuseums() {
         return museumService.findAll();
     }
 
-
-    // get museum by id
+    /*
+     *   /museum/{id}
+     *       - returns a Museum object, with the given id
+     *         by calling getMuseum(id) with given id
+     *
+     * @PathVariable id - id to be searched for
+     *
+     * @return Museum - Museum with given id
+     *
+     */
     @GetMapping("/{id}")
-    public Museum getMuseumById(@PathVariable Long id) {
+    public Museum getMuseumById(
+            @PathVariable Long id  // id of museum to get
+    )
+    {
         return museumService.getMuseum(id);
     }
 
 
-// delete museum by id
+    //  +---------+
+    //  |   Post  |
+    //  +---------+
 
-    // Accept HTTP DELETE, localhost:8080/deleteMuseumById/id
-    @DeleteMapping("/delete/{id}")
-    public void deleteMuseumById(@PathVariable Long id) {
-        museumRepository.deleteById(id);
-    }
-
-    // Post for museum
-
-    @PostMapping("/Create")
+    /*
+    *   /museum/create
+    *       - Creates a new museum object with the given name
+    *       - saves it to the repository by calling addMuseum(name)
+    *       - in the service layer
+    *
+    * @RequestParam name - The name of the new Museum to be created
+    *
+    * @Return ResponseEntity<Museum> - The newly created museum as a body
+    */
+    @PostMapping("/create")
     public ResponseEntity<Museum> addMuseum(
-            @RequestParam String name)  // Name for new exhibit
+            @RequestParam String name  // Name for new exhibit
+    )
     {
-        museumService.addMuseum(name);
-        return ResponseEntity.ok().build();
+        Museum newMuseum = museumService.addMuseum(name);
+        return ResponseEntity.ok().body(newMuseum);
     }
 
-    // putMapping
+    //  +--------+
+    //  |   Put  |
+    //  +--------+
 
-    @PutMapping("{museum_id}/exhibit/{exhibit_id}")
-    public ResponseEntity<Exhibit> addExhibitToMuseum(@PathVariable Long museum_id, @PathVariable Long exhibit_id) {
-        Museum museum = museumService.getMuseum(museum_id);
-        Exhibit exhibit = exhibitService.getExhibit(exhibit_id).orElseThrow();
-        museum.addExhibit(exhibit);
-        return ResponseEntity.ok().build();
+
+    /*
+    *   /museum/{museum_id}/exhibit/{exhibit_id}
+    *       - Adds an exhibit to the given museum
+    *       - by calling addExhibit(exhibit) on Museum class
+    *
+    * @PathVariable museum_id  - id of the museum the exhibit is to be added to
+    * @PathVariable exhibit_id  - id of the exhibit we are going to add to the museum
+    *
+    * @Return ResponseEntity<Museum>  - The added to museum as a body, with the newly added exhibit
+     */
+    @PutMapping("/{museum_id}/exhibit/{exhibit_id}")
+    public ResponseEntity<Museum> addExhibitToMuseum(
+            @PathVariable Long museum_id,   // id of museum to add to
+            @PathVariable Long exhibit_id   // id of exhibit to add
+    )
+    {
+        Museum museum = museumService.getMuseum(museum_id);   //Museum to add to
+        Exhibit exhibit = exhibitService.getExhibit(exhibit_id).orElseThrow(); //Exhibit to add
+        museum.addExhibit(exhibit);  //Perform the add
+        return ResponseEntity.ok().body(museum);
+    }
+
+
+    //  +------------+
+    //  |   Delete   |
+    //  +------------+
+
+
+    /*
+    *  /museum/delete/{id}
+    *     - Deletes a museum with the given id
+    *     - by calling deleteById(id) method from the museum service layer
+    *
+    * @PathVariable id  - id of museum to be deleted
+     */
+    @DeleteMapping("/delete/{id}")
+    public void deleteMuseumById(
+            @PathVariable Long id  // id of museum to be deleted
+    )
+    {
+        museumService.deleteById(id);  // Perform the deletion
     }
 
 
