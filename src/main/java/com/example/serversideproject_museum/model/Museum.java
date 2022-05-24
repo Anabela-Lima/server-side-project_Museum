@@ -1,6 +1,7 @@
 package com.example.serversideproject_museum.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -21,7 +22,7 @@ public class Museum {
 
     @Enumerated(EnumType.STRING)
     private Country country;
-    @JsonIgnore
+    @JsonIgnoreProperties(value = "museum")
     @OneToMany(mappedBy = "museum", cascade = ALL)
     private Set<Exhibit> exhibits = new HashSet<>();
     //private Set<Staff> staff;
