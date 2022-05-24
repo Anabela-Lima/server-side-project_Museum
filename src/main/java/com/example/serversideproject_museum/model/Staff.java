@@ -17,7 +17,8 @@ public class Staff {
 // properties
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "name")
+    @SequenceGenerator(name = "name", sequenceName = "staff_sequence", allocationSize= 1, initialValue = 51)
     @Column
     private Long id;
     @Column
