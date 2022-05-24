@@ -5,6 +5,7 @@ import com.example.serversideproject_museum.repository.ArtefactRepository;
 import com.example.serversideproject_museum.repository.ExhibitRepository;
 import com.example.serversideproject_museum.repository.MuseumRepository;
 import com.example.serversideproject_museum.repository.StaffRepository;
+import com.example.serversideproject_museum.service.ExhibitService;
 import com.example.serversideproject_museum.service.MuseumService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -39,6 +40,9 @@ class ServerSideProjectMuseumApplicationTests {
     @Autowired
     MuseumService museumService;
 
+    @Autowired
+    ExhibitService exhibitService;
+
     @Test
     void contextLoads() {
     }
@@ -70,6 +74,23 @@ class ServerSideProjectMuseumApplicationTests {
         public void canAddMuseum(){
             museumService.addMuseum("New Museum test", Country.Afghanistan);
             assertEquals(21, museumRepository.findAll().size());
+        }
+
+        @Transactional
+        @Test
+        @DisplayName("Can filter museums by country")
+        public void canFindByCountry(){
+            assertEquals(1, museumService.findByCountry(Country.Japan).size());
+        }
+
+        @Transactional
+        @Test
+        @DisplayName("Can add an exhibit to the museum")
+        public void canAddExhibitToMuseum(){
+            Museum museum = museumService.getMuseum(1L);
+            Exhibit exhibit = exhibitService.getExhibit(1L).orElseThrow();
+            museum.addExhibit(exhibit);
+            assertEquals(1, museum.getExhibits().size());
         }
     }
 

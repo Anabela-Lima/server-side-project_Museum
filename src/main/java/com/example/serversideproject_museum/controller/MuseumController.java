@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -141,6 +142,7 @@ public class MuseumController {
     *
     * @Return ResponseEntity<Museum>  - The added to museum as a body, with the newly added exhibit
      */
+    @Transactional
     @PutMapping("/{museum_id}/exhibit/{exhibit_id}")
     public ResponseEntity<Museum> addExhibitToMuseum(
             @PathVariable Long museum_id,   // id of museum to add to
@@ -150,6 +152,7 @@ public class MuseumController {
         Museum museum = museumService.getMuseum(museum_id);   //Museum to add to
         Exhibit exhibit = exhibitService.getExhibit(exhibit_id).orElseThrow(); //Exhibit to add
         museum.addExhibit(exhibit);  //Perform the add
+        exhibit.setMuseum(museum);
         return ResponseEntity.ok().body(museum);
     }
 

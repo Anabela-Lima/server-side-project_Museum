@@ -43,8 +43,12 @@ public class ExhibitController {
 
     // create an exhibit
     @PostMapping("/exhibits")
-    public ResponseEntity<Exhibit> addExhibit(@RequestBody Exhibit exhibit){
-        Exhibit newExhibit = exhibitRepository.save(exhibit);
+    public ResponseEntity<Exhibit> addExhibit(
+            @RequestParam String name,
+            @RequestParam(required = false) Long museum_id
+    )
+    {
+        Exhibit newExhibit = exhibitRepository.save(new Exhibit(name));
         return ResponseEntity.ok().body(newExhibit);
     }
 
