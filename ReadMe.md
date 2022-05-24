@@ -46,7 +46,6 @@ localhost:8080/ ...
 
 ## Acknowledgements
 
-// INCLUDE GITHUB LINKS FOR OTHER MEMBERS
 
 - [Ana Bela Lima] (https://github.com/anabela-lima)
 - [James Stilman] (https://github.com/JStillman1)
