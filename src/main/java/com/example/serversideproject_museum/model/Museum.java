@@ -51,8 +51,10 @@ public class Museum {
     *          - Set of exhibits within the museum, initialised as an empty HashSet
     *          - Ignored in the JSON to avoid infinite recursion error
     *          - One-to-Many relationship with Exhibits table, mapped by its museum property
+    *
+    * Relationship - One Museum has many Exhibits
      */
-    @JsonIgnoreProperties("museum")
+    @JsonIgnoreProperties(value = "museum")
     @OneToMany(mappedBy = "museum", cascade = ALL)
     private Set<Exhibit> exhibits = new HashSet<>();
 
@@ -72,6 +74,8 @@ public class Museum {
 
 
     //   Getters & Setters
+
+    //Note - Do not include getter/setter for id property as this is created for us
 
     //For name variable:
     public String getName() {
