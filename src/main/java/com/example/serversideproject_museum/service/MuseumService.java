@@ -44,5 +44,9 @@ public class MuseumService {
     public void deleteById(Long id) {
         museumRepository.deleteById(id);
     }
+
+    public List<Museum> findByCountry(Country country) {
+        return museumRepository.findByCountry(country);
+    }
 }
 

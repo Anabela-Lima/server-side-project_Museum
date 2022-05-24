@@ -19,6 +19,7 @@ import java.util.Optional;
 *   - Endpoints available:
 *       - Get:
 *           - /museum  - returns a list of all museums in the repository
+*                      - optional extra filter by country
 *           - /museum/{id}  - returns a specific museum by id
 *       - Post:
 *           - /museum/create  - to add a new museum
@@ -61,12 +62,22 @@ public class MuseumController {
     *   /museum
     *       - returns a list of all museums available in the repository
     *         by calling findAll() in the museum service layer
+    *       - Optional choice to filter the list by country by
+    *         calling findByCountry(country) from the museum service layer
+    *
+    * @RequestParam country  - optional choice to filter museums only from this given country
     *
     * @return List<Museum> - List of all museums in the repository
     *
      */
     @GetMapping
-    public List<Museum> getAllMuseums() {
+    public List<Museum> getAllMuseums(
+            @RequestParam(required = false) Country country //Optional choice to filter by country
+    )
+    {
+        if(country != null){
+            return museumService.findByCountry(country);
+        }
         return museumService.findAll();
     }
 
@@ -87,6 +98,7 @@ public class MuseumController {
     {
         return museumService.getMuseum(id);
     }
+
 
 
     //  +---------+
