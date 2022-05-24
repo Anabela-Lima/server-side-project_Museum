@@ -8,7 +8,8 @@ import java.util.Date;
 public class Artefact {
 // artefact
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Artefact_sequence")
+    @SequenceGenerator(name="Artefact_sequence", allocationSize=1, initialValue = 101)
     @Column
     private Long id;
     @Column

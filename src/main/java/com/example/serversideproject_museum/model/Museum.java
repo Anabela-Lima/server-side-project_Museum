@@ -1,6 +1,7 @@
 package com.example.serversideproject_museum.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -13,15 +14,14 @@ import static javax.persistence.GenerationType.IDENTITY;
 public class Museum {
 
     @Id
-    @GeneratedValue(strategy = IDENTITY)
-
-
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "your_custom_sequence")
+    @SequenceGenerator(name="your_custom_sequence", allocationSize=1, initialValue = 21)
     private Long id;
     private String name;
 
     @Enumerated(EnumType.STRING)
     private Country country;
-    @JsonIgnore
+    @JsonIgnoreProperties(value = "museum")
     @OneToMany(mappedBy = "museum", cascade = ALL)
     private Set<Exhibit> exhibits = new HashSet<>();
     //private Set<Staff> staff;
@@ -35,6 +35,7 @@ public class Museum {
     }
 
     public Museum(String name) {
+        this.id = id;
         this.name = name;
     }
 

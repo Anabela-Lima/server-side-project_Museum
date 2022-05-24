@@ -14,7 +14,8 @@ public class Exhibit {
   //  Exhibit started Ana commit
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Exhibit_sequence")
+    @SequenceGenerator(name="Exhibit_sequence", allocationSize=1, initialValue = 28)
     @Column
     private Long id;
     @Column
