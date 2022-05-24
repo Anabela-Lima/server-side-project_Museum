@@ -87,9 +87,7 @@ class ServerSideProjectMuseumApplicationTests {
         @Test
         @DisplayName("Can add an exhibit to the museum")
         public void canAddExhibitToMuseum(){
-            Museum museum = museumService.getMuseum(1L);
-            Exhibit exhibit = exhibitService.getExhibit(20L);
-            museum.addExhibit(exhibit);
+            Museum museum = museumService.addExhibit(1L, 20L);
             assertEquals(5, museum.getExhibits().size());
         }
     }
