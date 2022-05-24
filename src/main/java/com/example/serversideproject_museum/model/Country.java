@@ -1,5 +1,7 @@
 package com.example.serversideproject_museum.model;
 
+// enum of all countries in the world
+// Used as a property of Museum and Artefact
 public enum Country {
 
     Afghanistan,
@@ -202,7 +204,7 @@ public enum Country {
 
 // a method to see if country exists
 
-    public static boolean CheckCountry(String country) {  // client puts in a string, that stirng will be country,
+    public static boolean CheckCountry(String country) {  // client puts in a string, that string will be country,
                                                                 // if country exists, return true
         country = country.toUpperCase();
         for (Country input_country: Country.values()) {
