@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class ExhibitController {
@@ -24,10 +25,18 @@ public class ExhibitController {
         this.exhibitService = exhibitService;
     }
 
-    @GetMapping(path = "/exhibit")
+    @GetMapping(path = "/exhibits")
     public ResponseEntity<List<Exhibit>> getAllExhibit() {
         List<Exhibit> exhibits = exhibitService.getAllExhibit();
         return ResponseEntity.ok().body(exhibits);
+    }
+
+    // get exhibit by id- done
+
+    @GetMapping(path = "/exhibit/{id}")
+    public ResponseEntity<java.util.Optional<Exhibit>> getAnExhibit(@PathVariable Long id ) {
+        Optional<Exhibit> exhibit = exhibitService.getExhibit(id);
+        return ResponseEntity.ok().body(exhibit);
     }
 
     @PostMapping("/exhibits")
