@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
@@ -76,9 +77,9 @@ public class StaffController {
     }
 
     // putMapping
-
+    @Transactional
     @PutMapping("/staff/{staff_id}/exhibit/{exhibit_id}")
-    public ResponseEntity<Exhibit>addExhibitID(@RequestParam @PathVariable Long staff_id, @PathVariable Long exhibit_id){
+    public ResponseEntity<Exhibit>addExhibitID(@PathVariable Long staff_id, @PathVariable Long exhibit_id){
 
         Staff staff = staffService.getStaff(staff_id).orElseThrow();
         Exhibit exhibit = exhibitService.getExhibit(exhibit_id).orElseThrow();
@@ -87,23 +88,22 @@ public class StaffController {
     }
 
    // fire staff method- delete
-    @DeleteMapping("/fireStaff/{id}")
+   @DeleteMapping("/fireStaff/{id}")
+   public ResponseEntity<String> fireStaff(@PathVariable Long id) {
 
-    public ResponseEntity<String> fireStaff(@PathVariable Long id) {
-
-        List<Long> staffIds = staffService.getAllStaff().stream().map(Staff::getId)
-                .filter(f -> f.equals(id)).toList();
-        if (!staffIds.isEmpty())
-        {ResponseEntity<String> OUT = ResponseEntity.ok("Staff" + staffService
-                .getStaff(id)
-                .stream()
-                .map(Staff::getFirsName).collect(toList())
-                + " has been fired from the Museum and is no longer in our records") ;
-            staffRepository.deleteById(id);
-            return OUT;}
-
-        return ResponseEntity.badRequest().build();
-    }
+       List<Long> staffIds = staffService.getAllStaff().stream().map(Staff::getId)
+               .filter(f -> f.equals(id)).toList();
+       if (!staffIds.isEmpty()) {
+           ResponseEntity<String> outputName = ResponseEntity.ok("Staff" + staffService
+                   .getStaff(id)
+                   .stream()
+                   .map(Staff::getFirsName).collect(toList())
+                   + " has been fired from the Museum and is no longer in our records");
+           staffRepository.deleteById(id);
+           return outputName;
+       }
+       return ResponseEntity.badRequest().build();
+   }
 
 
 

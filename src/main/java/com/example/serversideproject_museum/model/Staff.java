@@ -17,8 +17,8 @@ public class Staff {
 // properties
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "name")
-    @SequenceGenerator(name = "name", sequenceName = "staff_sequence", allocationSize= 1, initialValue = 51)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Staff_generator")
+    @SequenceGenerator(name = "Staff_generator", sequenceName = "staff_sequence", allocationSize= 1, initialValue = 51)
     @Column
     private Long id;
     @Column
@@ -33,7 +33,7 @@ public class Staff {
     private Integer salary;
 
 
-    @ManyToMany(mappedBy = "staff")
+    @ManyToMany(mappedBy = "staff", cascade = CascadeType.ALL)
     @JsonIgnoreProperties(value = "staff")
     private Set<Exhibit> exhibits;
 
