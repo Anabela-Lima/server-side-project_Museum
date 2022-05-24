@@ -20,6 +20,7 @@ public class Exhibit {
     @Column
     private String name;
 
+    @JsonIgnoreProperties(value = "exhibits")
     @OneToMany(mappedBy = "exhibits", cascade = CascadeType.ALL)    //- relationship between exhibit and artefacts - one exhit has many artifcats
     private Set<Artefact> artefacts;
 
