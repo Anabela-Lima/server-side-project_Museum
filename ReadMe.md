@@ -6,6 +6,7 @@ Ana, James, Falak, Maisha
 
 <img src=“https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer/0f/97/0f970dc5-a0db-4960-8607-488ac3f83742/virtualvisit.jpg”>
 
+
 ## Project Description
 
 A back-end Museum API project using Java, Spring and PostgreSQL database.
