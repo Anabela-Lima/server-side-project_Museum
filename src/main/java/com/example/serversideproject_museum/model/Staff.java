@@ -9,6 +9,8 @@ import java.util.Set;
 
 /*
 
+
+ UML Diagram: Staff 
  +------------------------------------------+
  |        Staff                             |
  +------------------------------------------+
@@ -39,6 +41,7 @@ public class Staff {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Staff_generator")
     @SequenceGenerator(name = "Staff_generator", allocationSize = 1, initialValue = 51) //Increment by 1, start at 51
+ 
     @Column
     private Long id;
 
@@ -66,7 +69,7 @@ public class Staff {
     *                          - Ignored by JSON to avoid Infinite Recursion error
     *                          - Initialised as an empty HashSet
     *                          - Many-To-Many relationship with Exhibit, mapped by staff property of Exhibit
-    *                          - Join table defined as
+    *                          - Join table defined as:
     *                           - ASSIGNMENTS with two columns
     *                           - STAFF_ID refers to the id of a staff object
     *                           - EXHIBIT_ID refers to the id of an exhibit object
@@ -74,6 +77,7 @@ public class Staff {
     * Relationship - Each member of Staff can work in many exhibits
     *              - Each Exhibit can have many staff members working in it
     */
+ 
     @ManyToMany(mappedBy = "staff", cascade = CascadeType.ALL)
     @JsonIgnoreProperties(value = "staff")
     private Set<Exhibit> exhibits = new HashSet<>();
@@ -116,6 +120,7 @@ public class Staff {
     }
 
     //For dob property:
+ 
     public LocalDate getDob() {
         return dob;
     }
@@ -124,6 +129,7 @@ public class Staff {
     }
 
     //For address property:
+ 
     public String getAddress() {
         return address;
     }
@@ -132,6 +138,7 @@ public class Staff {
     }
 
     //For salary property:
+ 
     public Integer getSalary() {
         return salary;
     }
@@ -140,6 +147,7 @@ public class Staff {
     }
 
     //For exhibits property:
+ 
     public Set<Exhibit> getExhibits() {
         return exhibits;
     }
@@ -149,7 +157,6 @@ public class Staff {
 
 
     //   Other methods
-
 
     /* addExhibit(Exhibit exhibit)
     *       Adds an exhibit to the set of exhibits the staff member
