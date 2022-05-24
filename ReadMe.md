@@ -47,10 +47,10 @@ localhost:8080/ ...
 ## Acknowledgements
 
 
-- [Ana Bela Lima](https:/github.com/ana-bela-lima)
-- [James Stilman](https:/github.com/JStillman1/)
-- [Falak ](https:/github.com/Falakhan)
-- [Maisha Islam](https://github.com/maisha-i)
-- 
+- ![Ana Bela Lima](https:/github.com/ana-bela-lima)
+- ![James Stilman](https:/github.com/JStillman1/)
+- ![Falak ](https:/github.com/Falakhan)
+- ![Maisha Islam](https://github.com/maisha-i)
+
 
 
