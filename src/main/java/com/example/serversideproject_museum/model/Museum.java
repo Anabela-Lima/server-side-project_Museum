@@ -65,9 +65,11 @@ public class Museum {
 
     /*  Basic Constructor
      *   @Param name - Name of the new museum to be instantiated
+     *   @Param country - Country the museum will be in, of type Country enum
      */
-    public Museum(String name) {
+    public Museum(String name, Country country) {
         this.name = name;
+        this.country = country;
     }
 
     // No arg constructor

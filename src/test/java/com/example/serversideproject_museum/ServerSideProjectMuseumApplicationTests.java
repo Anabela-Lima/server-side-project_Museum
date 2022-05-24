@@ -1,9 +1,6 @@
 package com.example.serversideproject_museum;
 
-import com.example.serversideproject_museum.model.Artefact;
-import com.example.serversideproject_museum.model.Exhibit;
-import com.example.serversideproject_museum.model.Museum;
-import com.example.serversideproject_museum.model.Staff;
+import com.example.serversideproject_museum.model.*;
 import com.example.serversideproject_museum.repository.ArtefactRepository;
 import com.example.serversideproject_museum.repository.ExhibitRepository;
 import com.example.serversideproject_museum.repository.MuseumRepository;
@@ -71,7 +68,7 @@ class ServerSideProjectMuseumApplicationTests {
         @Test
         @DisplayName("Can add a new museum")
         public void canAddMuseum(){
-            museumService.addMuseum("New Museum test");
+            museumService.addMuseum("New Museum test", Country.Afghanistan);
             assertEquals(21, museumRepository.findAll().size());
         }
     }

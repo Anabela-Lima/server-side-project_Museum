@@ -1,5 +1,6 @@
 package com.example.serversideproject_museum.controller;
 
+import com.example.serversideproject_museum.model.Country;
 import com.example.serversideproject_museum.model.Exhibit;
 import com.example.serversideproject_museum.model.Museum;
 import com.example.serversideproject_museum.repository.MuseumRepository;
@@ -94,20 +95,22 @@ public class MuseumController {
 
     /*
     *   /museum/create
-    *       - Creates a new museum object with the given name
+    *       - Creates a new museum object with the given name and country
     *       - saves it to the repository by calling addMuseum(name)
     *       - in the service layer
     *
     * @RequestParam name - The name of the new Museum to be created
+    * @RequestParam country - The country the museum will be in
     *
     * @Return ResponseEntity<Museum> - The newly created museum as a body
     */
     @PostMapping("/create")
     public ResponseEntity<Museum> addMuseum(
-            @RequestParam String name  // Name for new exhibit
+            @RequestParam String name,  // Name for new exhibit
+            @RequestParam Country country //Country of museum
     )
     {
-        Museum newMuseum = museumService.addMuseum(name);
+        Museum newMuseum = museumService.addMuseum(name, country);
         return ResponseEntity.ok().body(newMuseum);
     }
 

@@ -1,5 +1,6 @@
 package com.example.serversideproject_museum.service;
 
+import com.example.serversideproject_museum.model.Country;
 import com.example.serversideproject_museum.model.Exhibit;
 import com.example.serversideproject_museum.model.Museum;
 import com.example.serversideproject_museum.repository.MuseumRepository;
@@ -35,8 +36,8 @@ public class MuseumService {
 
 
     // add museum
-    public Museum addMuseum(String name) {
-        return museumRepository.save(new Museum(name));
+    public Museum addMuseum(String name, Country country) {
+        return museumRepository.save(new Museum(name, country));
     }
 
 
