@@ -1,16 +1,13 @@
 package com.example.serversideproject_museum.service;
 
 import com.example.serversideproject_museum.model.Artefact;
-import com.example.serversideproject_museum.model.Country;
-import com.example.serversideproject_museum.model.Exhibit;
-import com.example.serversideproject_museum.model.Museum;
+
 import com.example.serversideproject_museum.model.dto.ArtefactDto;
 import com.example.serversideproject_museum.repository.ArtefactRepository;
 import com.example.serversideproject_museum.repository.ExhibitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.Id;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -29,7 +26,7 @@ public class ArtefactService {
 //    }
 
 
-    // get all Artefacts with exhibit id
+    // get all Artefacts with exhibit id showing in the body
     public List<ArtefactDto> getAllArtefact() {
         return artefactRepository.findAll()
                 .stream()
