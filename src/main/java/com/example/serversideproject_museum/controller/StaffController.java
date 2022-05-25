@@ -12,10 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
@@ -75,7 +72,7 @@ public class StaffController {
         return ResponseEntity.ok().build();
     }
 
-    // putMapping
+    //putMapping-- problematic
 
     @Transactional
     @PutMapping("/staff/{staff_id}/exhibit/{exhibit_id}")
@@ -106,8 +103,44 @@ public class StaffController {
         return ResponseEntity.badRequest().build();
     }
 
+//
+//    // update staff exhibit- trying somethign new
+//
+//
+//    @PutMapping("/staff/{staff_id}/exhibit/{exhibit_id}")
+//    public ResponseEntity<Exhibit>setExhibitID(@PathVariable Long staff_id, @PathVariable Long exhibit_id){
+//
+//        Staff staff = staffService.getStaff(staff_id).orElseThrow();
+//        Exhibit exhibits = exhibitService.getExhibit(exhibit_id);
+//
+//       ArrayList <Exhibit> exhibitArrayList = new ArrayList<>();
+//       exhibitArrayList.add(exhibits);
+//
+//
+//        staff.setExhibits(new ArrayList<>());
+//
+//        return ResponseEntity.ok().build();
+//    }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
 //
 //    @DeleteMapping("/fireStaff/{id}")
 //    public void fireStaff(@PathVariable Long id) {

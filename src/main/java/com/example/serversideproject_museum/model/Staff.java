@@ -101,8 +101,6 @@ public class Staff {
 
     // Getters & Setters
 
-    //Note - We do not include getter/setter for id as this is created for us
-
     //For firstName property:
     public String getFirstName() {
         return firstName;
@@ -120,7 +118,7 @@ public class Staff {
     }
 
     //For dob property:
- 
+
     public LocalDate getDob() {
         return dob;
     }
@@ -129,7 +127,7 @@ public class Staff {
     }
 
     //For address property:
- 
+
     public String getAddress() {
         return address;
     }
@@ -138,7 +136,7 @@ public class Staff {
     }
 
     //For salary property:
- 
+
     public Integer getSalary() {
         return salary;
     }
@@ -147,7 +145,7 @@ public class Staff {
     }
 
     //For exhibits property:
- 
+
     public Set<Exhibit> getExhibits() {
         return exhibits;
     }
