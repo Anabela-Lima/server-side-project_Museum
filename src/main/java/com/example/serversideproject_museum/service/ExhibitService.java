@@ -9,18 +9,25 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
-public class ExhibitService {
+    // Service annotation 
+    @Service
+    public class ExhibitService {
 
-
+    
+    //  linking Exhibit service to ExhibitRepository
+    
     @Autowired
     ExhibitRepository exhibitRepository;
 
 
-    public  Optional<Exhibit> getExhibit(Long id) {
-      return exhibitRepository.findById(id);
+    // Service method- get by id 
+    
+    public  Exhibit getExhibit(Long id) {
+      return exhibitRepository.findById(id).orElseThrow();
     }
 
+    // service method to get all Exhibition rooms 
+    
     public List<Exhibit> getAllExhibit() {return exhibitRepository.findAll();
     }
 }

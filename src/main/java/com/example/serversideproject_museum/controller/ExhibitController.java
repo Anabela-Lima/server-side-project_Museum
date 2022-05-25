@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class ExhibitController {
@@ -24,17 +25,34 @@ public class ExhibitController {
         this.exhibitService = exhibitService;
     }
 
-    @GetMapping(path = "/exhibit")
+
+    // get all exhbits method
+    @GetMapping(path = "/exhibits")
     public ResponseEntity<List<Exhibit>> getAllExhibit() {
         List<Exhibit> exhibits = exhibitService.getAllExhibit();
         return ResponseEntity.ok().body(exhibits);
     }
 
+    // get exhibit by id- done
+
+    @GetMapping(path = "/exhibit/{id}")
+    public ResponseEntity<Exhibit> getAnExhibit(@PathVariable Long id ) {
+        Exhibit exhibit = exhibitService.getExhibit(id);
+        return ResponseEntity.ok().body(exhibit);
+    }
+
+    // create an exhibit
     @PostMapping("/exhibits")
-    public ResponseEntity<Exhibit> addExhibit(@RequestBody Exhibit exhibit){
-        Exhibit newExhibit = exhibitRepository.save(exhibit);
+    public ResponseEntity<Exhibit> addExhibit(
+            @RequestParam String name,
+            @RequestParam(required = false) Long museum_id
+    )
+    {
+        Exhibit newExhibit = exhibitRepository.save(new Exhibit(name));
         return ResponseEntity.ok().body(newExhibit);
     }
+
+    // update an exhibit by id
 
     @PutMapping("exhibits/{id}")
     public ResponseEntity<Exhibit> updateExhibit(@RequestBody Exhibit exhibit, @PathVariable Long id){
@@ -45,6 +63,7 @@ public class ExhibitController {
         return ResponseEntity.ok().body(update);
     }
 
+    // delete an exhibit by id
     @DeleteMapping("exhibits/{id}")
     public ResponseEntity<String> deleteArtefact(@PathVariable Long id){
         exhibitRepository.findById(id);

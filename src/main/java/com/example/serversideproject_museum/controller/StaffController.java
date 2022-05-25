@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
@@ -63,11 +64,11 @@ public class StaffController {
     // Post for staff
 
     @PostMapping("/HireStaff")
-    public ResponseEntity<Staff> hireStaff(@RequestParam(required = true) String firstName,
-                                           @RequestParam(required = true) String lastName,
-                                           @RequestParam(required = true) int age,
-                                           @RequestParam(required = true ) String address,
-                                           @RequestParam (required = true) Integer salary ) {
+    public ResponseEntity<Staff> hireStaff(@RequestParam String firstName,
+                                           @RequestParam String lastName,
+                                           @RequestParam int age,
+                                           @RequestParam String address,
+                                           @RequestParam Integer salary ) {
         LocalDate dob = LocalDate.now().minusYears(age);
 
         staffRepository.save(new Staff(firstName,lastName,dob, address,salary));
@@ -76,35 +77,20 @@ public class StaffController {
     }
 
     // putMapping
-
+    @Transactional
     @PutMapping("/staff/{staff_id}/exhibit/{exhibit_id}")
-    public ResponseEntity<Exhibit>addExhibitID(@RequestParam @PathVariable Long staff_id, @PathVariable Long exhibit_id){
+    public ResponseEntity<Exhibit>addExhibitID(@PathVariable Long staff_id, @PathVariable Long exhibit_id){
 
         Staff staff = staffService.getStaff(staff_id).orElseThrow();
-        Exhibit exhibit = exhibitService.getExhibit(exhibit_id).orElseThrow();
+        Exhibit exhibit = exhibitService.getExhibit(exhibit_id);
         staff.addExhibit(exhibit);
         return ResponseEntity.ok().build();
     }
 
-   // fire staff method- delete
     @DeleteMapping("/fireStaff/{id}")
-
-    public ResponseEntity<String> fireStaff(@PathVariable Long id) {
-
-        List<Long> staffIds = staffService.getAllStaff().stream().map(Staff::getId)
-                .filter(f -> f.equals(id)).toList();
-        if (!staffIds.isEmpty())
-        {ResponseEntity<String> OUT = ResponseEntity.ok("Staff" + staffService
-                .getStaff(id)
-                .stream()
-                .map(Staff::getFirsName).collect(toList())
-                + " has been fired from the Museum and is no longer in our records") ;
-            staffRepository.deleteById(id);
-            return OUT;}
-
-        return ResponseEntity.badRequest().build();
+    public void fireStaff(@PathVariable Long id) {
+        staffRepository.deleteById(id);
     }
-
 
 
 
