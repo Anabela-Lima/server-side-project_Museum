@@ -65,14 +65,20 @@ public class ArtefactController {
 
     // delete an artefact method
     @DeleteMapping("artefacts/{id}")
-    public ResponseEntity<String> deleteArtefact(@PathVariable Long id){
-        artefactRepository.findById(id);
-
+    public ResponseEntity<String> deleteArtefactById
+    (@PathVariable Long id){
+        artefactService.deleteById(id);
         return ResponseEntity.ok("Artefact with id" +id +" has been removed from database.");
 
     }
 
-
+//    @DeleteMapping("/delete/{id}")
+//    public void deleteMuseumById(
+//            @PathVariable Long id  // id of museum to be deleted
+//    )
+//    {
+//        museumService.deleteById(id);  // Perform the deletion
+//    }
 
 
 }

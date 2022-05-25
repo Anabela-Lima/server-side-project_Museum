@@ -24,6 +24,7 @@ public class ArtefactService {
 //    public List<Artefact> findByCountry(String country) {
 //        return artefactRepository.findByCountry(country);
 //    }
+    // Service method - get all Artefacts by country
 
     public List<ArtefactDto> findByCountryDto(String country) {
         return artefactRepository.findByCountry(country)
@@ -37,6 +38,11 @@ public class ArtefactService {
                             artefact.getCountry());}
                 )
                 .toList();
+    }
+    // Service method - delete all Artefacts
+
+    public void deleteById(Long id) {
+        artefactRepository.deleteById(id);
     }
 
 }
