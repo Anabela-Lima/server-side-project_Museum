@@ -60,7 +60,7 @@ import java.util.stream.Collectors;
 
 
 
-    // get all Artefacts with exhibit id
+    // get all staff with exhibit id - shows all staff working in a specific exhibit
     public List<StaffDto> getAllStaff() {
         return staffRepository.findAll()
                 .stream()
@@ -78,24 +78,67 @@ import java.util.stream.Collectors;
                 )
                 .toList();
     }
+
+
+
+//    // staff alone- show exhibit they are in
 //
-////    public List<Artefact> findByCountry(String country) {
-////        return artefactRepository.findByCountry(country);
-////    }
-//        // Service method - get all Artefacts by country
+//    public List<StaffDto> getStaff() {
+//        return staffRepository.findAll()
+//                .stream()
+//                .map(staff-> {
+//                            return new StaffDto(
+//                                    staff.getId(),
+//                                    staff.getFirstName(),
+//                                    staff.getLastName(),
+//                                    staff.getDob(),
+//                                    staff.getAddress(),
+//                                    staff.getSalary(), staff.getExhibits().stream().map(exhibit-> exhibit.getId()).collect(Collectors.toSet()));
+//                        }
+//                )
+//                .toList();
 //
-//        public List<ArtefactDto> findByCountryDto(String country) {
-//            return artefactRepository.findByCountry(country)
-//                    .stream()
-//                    .map(artefact -> {
-//                        return new ArtefactDto(
-//                                artefact.getId(),
-//                                artefact.getName(),
-//                                artefact.getCreator(),
-//                                artefact.getDate(),
-//                                artefact.getCountry(),
-//                                artefact.getExhibits().getId());}
-//                    )
-//                    .toList();
-//        }
+//    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+//
+//    // use  exhibit id to show all staff working there
+//
+//    public List<StaffDto> findByExhibits(Long exhibitId) {
+//        return staffRepository.findByExhibits(exhibitRepository.findById(exhibitId).get())
+//                .stream()
+//                .map(staff -> {
+//                            return new ArtefactDto(staff.getId(),
+//                                    staff.getFirstName(),
+//                                    staff.getLastName(),
+//                                    staff.getDob(),
+//                                    staff.getAddress(),
+//                                    staff.getSalary(),
+//                                    staff.getExhibits().stream().map(exhibit-> exhibit.getId()).collect(Collectors.toSet());
+//
+//                        }
+//                )
+//                .toList();
+//    }
+
+
+
 }
