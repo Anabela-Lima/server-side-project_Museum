@@ -105,7 +105,9 @@ public class Museum {
         this.country = country;
     }
 
-
+    public Long getId() {
+        return id;
+    }
     //   Other methods
 
     /* addExhibit

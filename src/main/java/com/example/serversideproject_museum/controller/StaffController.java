@@ -12,10 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
@@ -55,7 +52,6 @@ public class StaffController {
             Staff staff = staffOptional.get();
             return ResponseEntity.ok().body(staff);
         }
-
         System.out.println("Employee is not present!");
         return ResponseEntity.notFound().build();
     }
@@ -76,7 +72,8 @@ public class StaffController {
         return ResponseEntity.ok().build();
     }
 
-    // putMapping
+    //putMapping-- problematic
+
     @Transactional
     @PutMapping("/staff/{staff_id}/exhibit/{exhibit_id}")
     public ResponseEntity<Exhibit>addExhibitID(@PathVariable Long staff_id, @PathVariable Long exhibit_id){
@@ -87,35 +84,72 @@ public class StaffController {
         return ResponseEntity.ok().build();
     }
 
+
+   // Fire staff method [Delete]
+
     @DeleteMapping("/fireStaff/{id}")
-    public void fireStaff(@PathVariable Long id) {
-        staffRepository.deleteById(id);
+    public ResponseEntity<String> fireStaff(@PathVariable Long id) {
+
+        List<Long> staffIds = staffService.getAllStaff().stream().map(Staff::getId)
+                .filter(f -> f.equals(id)).toList();
+        if (!staffIds.isEmpty())
+        {ResponseEntity<String> OUT = ResponseEntity.ok("Staff" + staffService
+                .getStaff(id)
+                .stream()
+                .map(Staff::getFirstName).toList()
+                + " has been fired from the Museum and is no longer in our records.") ;
+            staffRepository.deleteById(id);
+            return OUT;}
+        return ResponseEntity.badRequest().build();
     }
 
-
-
-
-//    // fire staff method- delete
-//    @DeleteMapping("/fireStaff/{id}")
 //
-//    public ResponseEntity<String> fireStaff(@PathVariable Long id) {
-//        staffRepository.deleteById(id);
-//        List<Long> staffIds = staffService.getAllStaff().stream().map(Staff::getId)
-//                .filter(f -> f.equals(id)).toList();
-//        if (staffIds.isEmpty())
-//        {return ResponseEntity.ok("Staff" + staffService
-//                .getStaff(id)
-//                .stream()
-//                .map(Staff::getFirsName).collect(toList())
-//                + " has been fired from the Museum and is no longer in our records");}
+//    // update staff exhibit- trying somethign new
 //
-//        return ResponseEntity.badRequest().build();
+//
+//    @PutMapping("/staff/{staff_id}/exhibit/{exhibit_id}")
+//    public ResponseEntity<Exhibit>setExhibitID(@PathVariable Long staff_id, @PathVariable Long exhibit_id){
+//
+//        Staff staff = staffService.getStaff(staff_id).orElseThrow();
+//        Exhibit exhibits = exhibitService.getExhibit(exhibit_id);
+//
+//       ArrayList <Exhibit> exhibitArrayList = new ArrayList<>();
+//       exhibitArrayList.add(exhibits);
+//
+//
+//        staff.setExhibits(new ArrayList<>());
+//
+//        return ResponseEntity.ok().build();
 //    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //
 //
-//
-//
-//
+//    @DeleteMapping("/fireStaff/{id}")
+//    public void fireStaff(@PathVariable Long id) {
+//        staffRepository.deleteById(id);
+//    }
+
+
+
+
 
 
 
