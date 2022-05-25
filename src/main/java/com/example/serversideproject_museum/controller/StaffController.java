@@ -78,9 +78,10 @@ public class StaffController {
     @PutMapping("/staff/{staff_id}/exhibit/{exhibit_id}")
     public ResponseEntity<Exhibit>addExhibitID(@PathVariable Long staff_id, @PathVariable Long exhibit_id){
 
-        Staff staff = staffService.getStaff(staff_id).orElseThrow();
+        Staff staff = staffService.getStaff(staff_id).get();
         Exhibit exhibit = exhibitService.getExhibit(exhibit_id);
         staff.addExhibit(exhibit);
+        Exhibit updatedExhibit = exhibit.addStaff(staff);
         return ResponseEntity.ok().build();
     }
 

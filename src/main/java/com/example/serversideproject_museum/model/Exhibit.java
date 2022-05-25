@@ -64,11 +64,12 @@ public class Exhibit {
     *              - Each exhibit may have many staff members working in it
     */
     @Column
+    @JsonIgnoreProperties(value = "exhibits")
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "assignments",
-            joinColumns = @JoinColumn(name = "staff_id"),
-            inverseJoinColumns = @JoinColumn(name = "exhibit_id")
+            joinColumns = @JoinColumn(name = "exhibit_id"),
+            inverseJoinColumns = @JoinColumn(name = "staff_id")
     )
     private Set<Staff> staff;
 
@@ -143,4 +144,8 @@ public class Exhibit {
         this.museum = museum;
     }
 
+    public Exhibit addStaff(Staff newStaff) {
+        staff.add(newStaff);
+        return this;
+    }
 }
