@@ -100,6 +100,14 @@ public class Exhibit {
 
     //Note - We do not include getter/setter for the id property as this is created for us
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     // For the name property:
     public String getName() {
         return name;
