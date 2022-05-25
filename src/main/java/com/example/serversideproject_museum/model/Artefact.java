@@ -1,5 +1,6 @@
 package com.example.serversideproject_museum.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -63,7 +64,7 @@ public class Artefact {
     *
     * Relationship - Many artefacts can be contained within one exhibit
      */
-    @JsonIgnoreProperties(value = "artefacts")
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "exhibit_id", nullable = false)
     private Exhibit exhibits;
@@ -90,6 +91,14 @@ public class Artefact {
     //   Getters & Setters
 
     // Note - we don't need getter/setter for id as this is created for us and should never be changed
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     // For name property:
  
