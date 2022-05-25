@@ -34,12 +34,12 @@ public class ArtefactController {
 
     // Get all arefacts method
     @GetMapping("/artefacts")
-    public ResponseEntity<List<Artefact>> getAllArtefacts(){
-        List<Artefact> artefacts = artefactService.getAllArtefact();
+    public ResponseEntity<List<ArtefactDto>> getAllArtefacts(){
+        List<ArtefactDto> artefacts = artefactService.getAllArtefact();
         return ResponseEntity.ok().body(artefacts);
     }
 
-    @GetMapping("/artefactsByExhibit/{Id}")
+    @GetMapping("/artefactsByExhibit/{id}")
     public ResponseEntity<List<ArtefactDto>> findByExhibits(@PathVariable Long id){
         List<ArtefactDto> artefacts = artefactService.findByExhibits(id);
         return ResponseEntity.ok().body(artefacts);

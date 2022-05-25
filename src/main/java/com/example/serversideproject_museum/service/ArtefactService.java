@@ -25,12 +25,30 @@ public class ArtefactService {
 
 
     // Service method - get all Artefacts
-    public List<Artefact> getAllArtefact() {return artefactRepository.findAll();
+//    public List<Artefact> getAllArtefact() {return artefactRepository.findAll();
+//    }
+
+
+    // get all Artefacts with exhibit id
+    public List<ArtefactDto> getAllArtefact() {
+        return artefactRepository.findAll()
+                .stream()
+                .map(artefact -> {
+                            return new ArtefactDto(
+                                    artefact.getId(),
+                                    artefact.getName(),
+                                    artefact.getCreator(),
+                                    artefact.getDate(),
+                                    artefact.getCountry(),
+                                    artefact.getExhibits().getId());
+                        }
+                )
+                .toList();
     }
 
-    // get all artefacts with exhibit id
-    public List<ArtefactDto> findByExhibits(Long exhibit) {
-        return artefactRepository.findByExhibits(exhibitRepository.findById(exhibit).get())
+    // get all artefacts by exhibit id
+    public List<ArtefactDto> findByExhibits(Long exhibitId) {
+        return artefactRepository.findByExhibits(exhibitRepository.findById(exhibitId).get())
                 .stream()
                 .map(artefact -> {
                             return new ArtefactDto(
