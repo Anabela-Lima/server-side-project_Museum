@@ -4,6 +4,7 @@ import com.example.serversideproject_museum.model.Exhibit;
 import com.example.serversideproject_museum.model.Staff;
 import com.example.serversideproject_museum.repository.ExhibitRepository;
 import com.example.serversideproject_museum.service.ExhibitService;
+import com.example.serversideproject_museum.service.MuseumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,9 @@ public class ExhibitController {
     ExhibitRepository exhibitRepository;
 
     private final ExhibitService exhibitService;
+
+    @Autowired
+    MuseumService museumService;
 
     public ExhibitController(ExhibitService exhibitService) {
         this.exhibitService = exhibitService;
@@ -51,7 +55,9 @@ public class ExhibitController {
             @RequestParam(required = false) Long museum_id
     )
     {
-        Exhibit newExhibit = exhibitRepository.save(new Exhibit(name));
+        Exhibit newExhibit = new Exhibit(name);
+        newExhibit.setMuseum(museumService.getMuseum(museum_id));
+        exhibitRepository.save(newExhibit);
         return ResponseEntity.ok().body(newExhibit);
     }
 
