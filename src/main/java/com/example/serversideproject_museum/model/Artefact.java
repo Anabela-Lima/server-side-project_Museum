@@ -1,5 +1,7 @@
 package com.example.serversideproject_museum.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
@@ -61,6 +63,7 @@ public class Artefact {
     *
     * Relationship - Many artefacts can be contained within one exhibit
      */
+    @JsonIgnoreProperties(value = "artefacts")
     @ManyToOne
     @JoinColumn(name = "exhibit_id", nullable = false)
     private Exhibit exhibits;

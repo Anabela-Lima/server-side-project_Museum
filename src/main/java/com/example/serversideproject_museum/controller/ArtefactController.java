@@ -1,6 +1,7 @@
 package com.example.serversideproject_museum.controller;
 
 import com.example.serversideproject_museum.model.Artefact;
+import com.example.serversideproject_museum.model.Exhibit;
 import com.example.serversideproject_museum.repository.ArtefactRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,11 +38,24 @@ public class ArtefactController {
         return ResponseEntity.ok().body(newArtefact);
     }
 
+    // update an artefact by id
+    @PutMapping("artefacts/{id}")
+    public ResponseEntity<Artefact> updateArtefact(@RequestBody Artefact artefact, @PathVariable Long id){
+        Artefact update = artefactRepository.findById(id).map(updatedArtefact -> {
+                    updatedArtefact.setName(artefact.getName());
+                    return artefactRepository.save(updatedArtefact);})
+                .orElseGet(() -> {return artefactRepository.save(artefact);});
+        return ResponseEntity.ok().body(update);
+    }
+
     // delete an artefact method
     @DeleteMapping("artefacts/{id}")
     public ResponseEntity<String> deleteArtefact(@PathVariable Long id){
         artefactRepository.findById(id);
         return ResponseEntity.ok("Artefact with id" +id +" has been removed from database.");
     }
+
+
+
 
 }
