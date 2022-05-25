@@ -67,7 +67,7 @@ public class ExhibitController {
     @DeleteMapping("exhibits/{id}")
     public ResponseEntity<String> deleteArtefact(@PathVariable Long id){
         exhibitRepository.findById(id);
-        return ResponseEntity.ok("Exhibit with id" +id +" has been removed from database.");
+        return ResponseEntity.ok("Exhibit with id" +id +"  has been removed from database.");
     }
 
 
