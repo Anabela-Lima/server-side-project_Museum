@@ -39,6 +39,12 @@ public class ArtefactController {
         return ResponseEntity.ok().body(artefacts);
     }
 
+    @GetMapping("/artefactsByExhibit/{Id}")
+    public ResponseEntity<List<ArtefactDto>> findByExhibits(@PathVariable Long id){
+        List<ArtefactDto> artefacts = artefactService.findByExhibits(id);
+        return ResponseEntity.ok().body(artefacts);
+    }
+
 
     // get artefact by country method
     @GetMapping("artefacts/{country}")

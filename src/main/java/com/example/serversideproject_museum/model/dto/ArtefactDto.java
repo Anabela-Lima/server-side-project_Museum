@@ -23,13 +23,16 @@ public class ArtefactDto {
 
     private String country;
 
+    private Long exhibitId;
 
-    public ArtefactDto(Long id, String name, String creator, LocalDate date, String country) {
+
+    public ArtefactDto(Long id, String name, String creator, LocalDate date, String country, Long exhibitId) {
         this.id = id;
         this.name = name;
         this.creator = creator;
         this.date = date;
         this.country = country;
+        this.exhibitId = exhibitId;
     }
 
     public ArtefactDto() {
@@ -73,5 +76,13 @@ public class ArtefactDto {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public Long getExhibitId() {
+        return exhibitId;
+    }
+
+    public void setExhibitId(Long exhibitId) {
+        this.exhibitId = exhibitId;
     }
 }
