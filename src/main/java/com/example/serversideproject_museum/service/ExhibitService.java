@@ -23,7 +23,7 @@ import java.util.Optional;
     // Service method- get by id 
     
     public  Exhibit getExhibit(Long id) {
-      return exhibitRepository.findById(id).orElseThrow();
+      return exhibitRepository.findById(id).orElse(null);
     }
 
     // service method to get all Exhibition rooms 
