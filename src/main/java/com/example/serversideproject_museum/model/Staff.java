@@ -155,6 +155,11 @@ public class Staff {
         this.exhibits = exhibits;
     }
 
+    // getter for id
+    public Long getId() {
+        return id;
+    }
+
 
     //   Other methods
 

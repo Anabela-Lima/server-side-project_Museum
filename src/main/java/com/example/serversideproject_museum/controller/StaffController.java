@@ -55,7 +55,6 @@ public class StaffController {
             Staff staff = staffOptional.get();
             return ResponseEntity.ok().body(staff);
         }
-
         System.out.println("Employee is not present!");
         return ResponseEntity.notFound().build();
     }
@@ -77,6 +76,7 @@ public class StaffController {
     }
 
     // putMapping
+
     @Transactional
     @PutMapping("/staff/{staff_id}/exhibit/{exhibit_id}")
     public ResponseEntity<Exhibit>addExhibitID(@PathVariable Long staff_id, @PathVariable Long exhibit_id){
@@ -87,35 +87,36 @@ public class StaffController {
         return ResponseEntity.ok().build();
     }
 
+
+   // Fire staff method [Delete]
+
     @DeleteMapping("/fireStaff/{id}")
-    public void fireStaff(@PathVariable Long id) {
-        staffRepository.deleteById(id);
+    public ResponseEntity<String> fireStaff(@PathVariable Long id) {
+
+        List<Long> staffIds = staffService.getAllStaff().stream().map(Staff::getId)
+                .filter(f -> f.equals(id)).toList();
+        if (!staffIds.isEmpty())
+        {ResponseEntity<String> OUT = ResponseEntity.ok("Staff" + staffService
+                .getStaff(id)
+                .stream()
+                .map(Staff::getFirstName).toList()
+                + " has been fired from the Museum and is no longer in our records.") ;
+            staffRepository.deleteById(id);
+            return OUT;}
+        return ResponseEntity.badRequest().build();
     }
 
 
 
-
-//    // fire staff method- delete
+//
 //    @DeleteMapping("/fireStaff/{id}")
-//
-//    public ResponseEntity<String> fireStaff(@PathVariable Long id) {
+//    public void fireStaff(@PathVariable Long id) {
 //        staffRepository.deleteById(id);
-//        List<Long> staffIds = staffService.getAllStaff().stream().map(Staff::getId)
-//                .filter(f -> f.equals(id)).toList();
-//        if (staffIds.isEmpty())
-//        {return ResponseEntity.ok("Staff" + staffService
-//                .getStaff(id)
-//                .stream()
-//                .map(Staff::getFirsName).collect(toList())
-//                + " has been fired from the Museum and is no longer in our records");}
-//
-//        return ResponseEntity.badRequest().build();
 //    }
-//
-//
-//
-//
-//
+
+
+
+
 
 
 
