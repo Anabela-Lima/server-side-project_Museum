@@ -86,16 +86,17 @@ public class Staff {
     //   Constructors
 
     // No arg constructor
-    public Staff() {
+    public Staff(String firstName, String lastName, LocalDate dob, String address, Integer salary) {
     }
 
     // Standard constructor
-    public Staff(String firsName, String lastName, LocalDate dob, String address, Integer salary) {
+    public Staff(String firsName, String lastName, LocalDate dob, String address, Integer salary, Exhibit exhibit) {
         this.firstName = firsName;
         this.lastName = lastName;
         this.dob = dob;
         this.address = address;
         this.salary = salary;
+        this.exhibit = exhibit;
     }
 
 
