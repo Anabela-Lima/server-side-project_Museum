@@ -1,6 +1,10 @@
 package com.example.serversideproject_museum.model;
 
+import com.example.serversideproject_museum.repository.ExhibitRepository;
+import com.example.serversideproject_museum.service.ExhibitService;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -31,9 +35,11 @@ import java.util.Set;
 
  */
 
+
 @Entity
 @Table(name = "staff")
 public class Staff {
+
 
     //   Staff properties
 
@@ -79,24 +85,24 @@ public class Staff {
     */
  
     @ManyToMany(mappedBy = "staff", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties(value = "staff")
+    @JsonIgnore
     private Set<Exhibit> exhibits = new HashSet<>();
 
 
     //   Constructors
 
     // No arg constructor
-    public Staff(String firstName, String lastName, LocalDate dob, String address, Integer salary) {
+    public Staff() {
     }
 
     // Standard constructor
-    public Staff(String firsName, String lastName, LocalDate dob, String address, Integer salary, Exhibit exhibit) {
+    public Staff(String firsName, String lastName, LocalDate dob, String address, Integer salary) {
         this.firstName = firsName;
         this.lastName = lastName;
         this.dob = dob;
         this.address = address;
         this.salary = salary;
-        this.exhibit = exhibit;
+
     }
 
 
@@ -143,6 +149,7 @@ public class Staff {
     }
     public void setSalary(Integer salary) {
         this.salary = salary;
+
     }
 
     //For exhibits property:
