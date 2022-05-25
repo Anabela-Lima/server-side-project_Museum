@@ -9,7 +9,7 @@ Ana Bela, James, Falak, Maisha
 
 ## Project Description
 
-A back-end Museum API project using Java, Spring and PostgreSQL database.
+A back-end Museum API project using Java, Spring and H2 console database.
 
 Database consists of: // EDIT
 
