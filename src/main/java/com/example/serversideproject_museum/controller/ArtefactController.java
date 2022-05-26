@@ -2,10 +2,12 @@ package com.example.serversideproject_museum.controller;
 
 import com.example.serversideproject_museum.model.Artefact;
 
+import com.example.serversideproject_museum.model.Exhibit;
 import com.example.serversideproject_museum.model.Country;
 import com.example.serversideproject_museum.model.Museum;
 import com.example.serversideproject_museum.model.dto.ArtefactDto;
 import com.example.serversideproject_museum.repository.ArtefactRepository;
+import com.example.serversideproject_museum.repository.ExhibitRepository;
 import com.example.serversideproject_museum.service.ArtefactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +24,9 @@ public class ArtefactController {
 
     @Autowired
     ArtefactRepository artefactRepository;
+
+    @Autowired
+    ExhibitRepository exhibitRepository;
 
     private final ArtefactService artefactService;
 
@@ -73,11 +78,15 @@ public class ArtefactController {
             @RequestParam String name,
             @RequestParam String creator,
             @RequestParam String date,
-            @RequestParam Country country
+            @RequestParam Country country,
+            @RequestParam Long exhibitId
     )
     {
+        Exhibit exhibitToAddTo = exhibitRepository.findById(exhibitId).get();   //Find the exhibit we want to add to
         LocalDate localDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         Artefact newArtefact = artefactService.addArtefact(name, creator, localDate, country);
+        newArtefact.setExhibits(exhibitToAddTo);
+        artefactRepository.save(newArtefact);
         return ResponseEntity.ok().body(newArtefact);
     }
 
@@ -125,9 +134,10 @@ public class ArtefactController {
     public ResponseEntity<String> deleteArtefactById
     (@PathVariable Long id){
         artefactService.deleteById(id);
-        return ResponseEntity.ok("Artefact with id" +id +" has been removed from database.");
+        return ResponseEntity.ok("Artefact with id " +id +" has been removed from database.");
 
     }
+
 
 
 
