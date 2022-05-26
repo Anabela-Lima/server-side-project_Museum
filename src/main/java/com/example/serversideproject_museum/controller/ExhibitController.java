@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/exhibit")
 public class ExhibitController {
 
 
@@ -30,8 +31,8 @@ public class ExhibitController {
     }
 
 
-    // get all exhbits method
-    @GetMapping(path = "/exhibits")
+    // get all exhibits method
+    @GetMapping
     public ResponseEntity<List<Exhibit>> getAllExhibit() {
         List<Exhibit> exhibits = exhibitService.getAllExhibit();
         return ResponseEntity.ok().body(exhibits);
@@ -39,7 +40,7 @@ public class ExhibitController {
 
     // get exhibit by id- done
 
-    @GetMapping(path = "/exhibit/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Exhibit> getAnExhibit(@PathVariable Long id ) {
         Exhibit exhibit = exhibitService.getExhibit(id);
         if(exhibit != null){
@@ -49,7 +50,7 @@ public class ExhibitController {
     }
 
     // create an exhibit
-    @PostMapping("/exhibits")
+    @PostMapping("/create")
     public ResponseEntity<Exhibit> addExhibit(
             @RequestParam String name,
             @RequestParam(required = false) Long museum_id
@@ -63,7 +64,7 @@ public class ExhibitController {
 
     // update an exhibit by id
 
-    @PutMapping("exhibits/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Exhibit> updateExhibit(@RequestBody Exhibit exhibit, @PathVariable Long id){
         Exhibit update = exhibitRepository.findById(id).map(updatedExhibit -> {
                 updatedExhibit.setName(exhibit.getName());
@@ -73,7 +74,7 @@ public class ExhibitController {
     }
 
     // delete an exhibit by id
-    @DeleteMapping("exhibits/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteArtefact(@PathVariable Long id){
         exhibitRepository.deleteById(id);
         return ResponseEntity.ok("Exhibit with id" +id +" has been removed from database.");

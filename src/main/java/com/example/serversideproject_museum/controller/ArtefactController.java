@@ -15,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
+@RequestMapping("/artefact")
 public class ArtefactController {
 
     @Autowired
@@ -35,7 +36,7 @@ public class ArtefactController {
     //  +--------+
 
     // Get all artefacts method
-    @GetMapping("/artefacts")
+    @GetMapping
     public ResponseEntity<List<ArtefactDto>> getAllArtefacts(){
         List<ArtefactDto> artefacts = artefactService.getAllArtefact();
         return ResponseEntity.ok().body(artefacts);
@@ -45,7 +46,7 @@ public class ArtefactController {
     //  |   Get  |
     //  +--------+
     // Get all artefacts by exhibit id method
-    @GetMapping("/artefactsByExhibit/{id}")
+    @GetMapping("/byExhibit/{id}")
     public ResponseEntity<List<ArtefactDto>> findByExhibits(@PathVariable Long id){
         List<ArtefactDto> artefacts = artefactService.findByExhibits(id);
         return ResponseEntity.ok().body(artefacts);
@@ -55,7 +56,7 @@ public class ArtefactController {
     //  +--------+
 
     // get artefact by country method
-    @GetMapping("artefacts/{country}")
+    @GetMapping("/{country}")
     public ResponseEntity<List<ArtefactDto>> getByArtefactcountry(@PathVariable("country") Country country){
         List<ArtefactDto> artefacts = artefactService.findByCountryDto(country);
         return ResponseEntity.ok().body(artefacts);
@@ -65,7 +66,7 @@ public class ArtefactController {
     //  |   Post  |
     //  +---------+
 
-    @PostMapping("/Create")
+    @PostMapping("/create")
     public ResponseEntity<Artefact> addArtefact(
             @RequestParam String name,
             @RequestParam String creator,
@@ -83,7 +84,7 @@ public class ArtefactController {
     //  +--------+
 
     // update an artefact by id
-    @PutMapping("update/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Artefact> updateArtefact(@RequestBody Artefact artefact, @PathVariable Long id){
         Artefact update = artefactRepository.findById(id).map(updatedArtefact -> {
                     updatedArtefact.setName(artefact.getName());
@@ -98,7 +99,7 @@ public class ArtefactController {
     //  +------------+
 
     // delete an artefact method
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteArtefactById
     (@PathVariable Long id){
         artefactService.deleteById(id);

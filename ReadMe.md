@@ -9,15 +9,23 @@ Ana Bela, James, Falak, Maisha
 
 ## Project Description
 
-A back-end Museum API project using Java, Spring and H2 console database.
+Muse360: A Museum management API to help museums manage their exhibits, artefacts and staff rotas. Using Java, Spring and H2 console database.
 
-Database consists of: // EDIT
+Database consists of:
+
+
+- Museums
+- Exhibits
+- Artefacts
+- Staff
+- Assignments
 
 ## Setup Instructions
 
-    1. Clone the Repository: git clone 
-    2. Open IntelliJ
-    3. Refer to Database setup queries.md
+    1. Fork the Repository
+    2. Clone your forked Repository: git clone 
+    3. Open IntelliJ
+    4. Code away!
 
 ## Usage
 
@@ -25,22 +33,33 @@ Database consists of: // EDIT
 
 localhost:8080/ ...
 
-| HTTP Request Path                               | Request Type | Description               |
-|:------------------------------------------------|:-------------|:--------------------------|
-| `.../getMuseum `                                | `GET`        | Get all museums           |
-| `.../museum/{id}`                               | `GET`        | Get museum by id          |
-| `.../CreateMuseum`                              | `POST`       | Build a museum            |
-| `.../museum/{museum_id}/exhibit/{exhibit_id} `  | `PUT`        | Update museum             |
-| `.../deleteMuseum/{id}`                         | `GET`        | Demolish museum           |
-| `.../exhibits `                                 | `GET`        | Get all exhibits          |
-| `.../exhibit/{id} `                             | `GET`        | Get exhibit by id         |
-| `.../exhibits`                                  | `POST`       | Build an exhibition room  |
-| `.../exhibits/{id} `                            | `PUT`        | Update an Exhibition room |
-| `.../exhibits/{id} `                            | `DELETE`     | Demolish exhibition room  |
-| `.../artefacts `                                | `GET`        | Get all artefacts         |
-| `.../artefacts/{country}`                       | `GET`        | Get artefact by country   |
-| `.../artefacts `                                | `POST`       | Make an artefact          |
-| `.../artefacts/{id}`                            | `DELETE`     | Destroy an artefact       |
+| HTTP Request Path                              | Request Type | Description                             |
+|:-----------------------------------------------|:-------------|:----------------------------------------|
+| MUSEUM                                         |              |                                         |
+| `.../museum `                                  | `GET`        | Get all museums                         |
+| `.../museum/{id}`                              | `GET`        | Get museum by id                        |
+| `.../museum/create`                            | `POST`       | Add a new museum                        |
+| `.../museum/{museum_id}/exhibit/{exhibit_id} ` | `PUT`        | Add an exhibit to a museum              |
+| `.../museum/delete/{id}`                       | `DElETE`     | Delete a museum                         |
+| EXHIBIT                                        |              |                                         |
+| `.../exhibit `                                 | `GET`        | Get all exhibits                        |
+| `.../exhibit/{id} `                            | `GET`        | Get exhibit by id                       |
+| `.../exhibit/create`                           | `POST`       | Add a new exhibit                       |
+| `.../exhibit/update/{id} `                     | `PUT`        | Update an exhibit                       |
+| `.../exhibit/delete/{id} `                     | `DELETE`     | Delete an exhibit                       |
+| ARTEFACT                                       |              |                                         |
+| `.../artefact `                                | `GET`        | Get all artefacts                       |
+| `.../artefact/byExhibit/{id} `                 | `GET`        | Get artefacts by exhibit id             |
+| `.../artefact/{country}`                       | `GET`        | Get artefacts by country                |
+| `.../artefact/create `                         | `POST`       | Add a new artefact                      |
+| `.../artefact/update/{id} `                    | `PUT`        | Update an artefact                      |
+| `.../artefact/delete/{id}`                     | `DELETE`     | Delete an artefact                      |
+| STAFF                                          |              |                                         |
+| `.../staff `                                   | `GET`        | Get all staff                           |
+| `.../staff/{id}`                               | `GET`        | Get staff by id                         |
+| `.../staff/hire`                               | `POST`       | Hire a new staff member                 |
+| `.../staff/{staff_id}/exhibit/{exhibit_id} `   | `PUT`        | Assign a new staff member to an exhibit |
+| `.../staff/fire/{id}`                          | `DElETE`     | Fire a staff member                     |
 
 
 

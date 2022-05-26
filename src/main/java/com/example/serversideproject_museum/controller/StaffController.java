@@ -20,6 +20,7 @@ import java.util.*;
 // Ana started working commit
 
 @RestController
+@RequestMapping("/staff")
 public class StaffController {
 
     @Autowired
@@ -34,7 +35,7 @@ public class StaffController {
 
     // GetAll
 
-    @GetMapping(path = "/staff")
+    @GetMapping
     public ResponseEntity<List<StaffDto>> getAllStaff() {
         List<StaffDto> staff = staffService.getAllStaff();
         return ResponseEntity.ok().body(staff);
@@ -43,7 +44,7 @@ public class StaffController {
 
     // Get a staff
 
-    @GetMapping(path = "/Staff/{id}")
+    @GetMapping(path = "/{id}")
     public ResponseEntity<Staff> getStaff(@PathVariable Long id) {
         Optional<Staff> staffOptional = staffService.getStaff(id);
 
@@ -58,7 +59,7 @@ public class StaffController {
 
     // Post for staff
 
-    @PostMapping("/HireStaff")
+    @PostMapping("/hire")
     public ResponseEntity<Staff> hireStaff(@RequestParam String firstName,
                                            @RequestParam String lastName,
                                            @RequestParam int age,
@@ -74,7 +75,7 @@ public class StaffController {
     //putMapping-- problematic
 
     @Transactional
-    @PutMapping("/staff/{staff_id}/exhibit/{exhibit_id}")
+    @PutMapping("/{staff_id}/exhibit/{exhibit_id}")
     public ResponseEntity<Exhibit> addExhibitID(@PathVariable Long staff_id, @PathVariable Long exhibit_id) {
 
         Staff staff = staffService.getStaff(staff_id).get();
@@ -87,7 +88,7 @@ public class StaffController {
 
     // Fire staff method [Delete]
 
-    @DeleteMapping("/fireStaff/{id}")
+    @DeleteMapping("/fire/{id}")
     public ResponseEntity<String> fireStaff(@PathVariable Long id) {
 
         List<Long> staffIds = staffService.getAllStaff().stream().map(StaffDto::getId)
