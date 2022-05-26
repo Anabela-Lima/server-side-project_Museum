@@ -17,9 +17,18 @@ import java.util.*;
 
 
 
-// Ana started working commit
 
 @RestController
+
+// =====================================================================================================================
+//                    Endpoints
+// =====================================================================================================================
+
+    //  +--------+
+    //  |   Get  |
+    //  +--------+
+
+
 @RequestMapping("/staff")
 public class StaffController {
 
@@ -32,6 +41,9 @@ public class StaffController {
 
     private ExhibitService exhibitService;
 
+    //  +--------+
+    //  |   Get  |
+    //  +--------+
 
     // GetAll
 
@@ -40,6 +52,10 @@ public class StaffController {
         List<StaffDto> staff = staffService.getAllStaff();
         return ResponseEntity.ok().body(staff);
     }
+
+    //  +--------+
+    //  |   Get  |
+    //  +--------+
 
 
     // Get a staff
@@ -57,6 +73,11 @@ public class StaffController {
     }
 
 
+    //  +---------+
+    //  |   Post  |
+    //  +---------+
+
+
     // Post for staff
 
     @PostMapping("/hire")
@@ -66,13 +87,19 @@ public class StaffController {
                                            @RequestParam String address,
                                            @RequestParam Integer salary) {
         LocalDate dob = LocalDate.now().minusYears(age);
-
-        staffRepository.save(new Staff(firstName, lastName, dob, address, salary));
+        Staff newStaff = new Staff(firstName, lastName, dob, address, salary);
+        staffRepository.save(newStaff);
         System.out.println("Employee " + firstName + "has been hired!");
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body(newStaff);
     }
 
-    //putMapping-- problematic
+
+    //  +--------+
+    //  |   Put  |
+    //  +--------+
+
+
+    //putMapping
 
     @Transactional
     @PutMapping("/{staff_id}/exhibit/{exhibit_id}")
@@ -82,8 +109,13 @@ public class StaffController {
         Exhibit exhibit = exhibitService.getExhibit(exhibit_id);
         staff.addExhibit(exhibit);
         Exhibit updatedExhibit = exhibit.addStaff(staff);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body(updatedExhibit);
     }
+
+
+    //  +------------+
+    //  |   Delete   |
+    //  +------------+
 
 
     // Fire staff method [Delete]
@@ -105,8 +137,6 @@ public class StaffController {
         return ResponseEntity.badRequest().build();
     }
 
-
-    // find staff by exhibit id
 
 
 

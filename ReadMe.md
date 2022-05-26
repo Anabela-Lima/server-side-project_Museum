@@ -20,6 +20,10 @@ Database consists of:
 - Staff
 - Assignments
 
+### Entity Relation Diagram
+
+![Entity Relation Diagram](ERD.png)
+
 ## Setup Instructions
 
     1. Fork the Repository
