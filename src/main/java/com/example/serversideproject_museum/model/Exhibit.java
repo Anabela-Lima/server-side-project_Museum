@@ -64,7 +64,7 @@ public class Exhibit {
     *              - Each exhibit may have many staff members working in it
     */
     @Column
-    @JsonIgnoreProperties(value = "exhibits")
+    @JsonIgnoreProperties
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "assignments",
@@ -79,7 +79,7 @@ public class Exhibit {
     */
  
     @ManyToOne
- 
+    @JsonIgnoreProperties(value = "exhibits")
     private Museum museum;
 
 
