@@ -22,8 +22,7 @@ Database consists of:
 
 ### Entity Relation Diagram
 
-![](../Desktop/Screenshot 2022-05-26 at 11.11.25.png)
-
+![Entity Relation Diagram](ERD.png)
 
 ## Setup Instructions
 
