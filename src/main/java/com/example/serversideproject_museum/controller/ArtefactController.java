@@ -26,6 +26,13 @@ public class ArtefactController {
         this.artefactService = artefactService;
     }
 
+    // =======================================================================================================================
+    //                    Endpoints
+    // =======================================================================================================================
+
+    //  +--------+
+    //  |   Get  |
+    //  +--------+
 
     // Get all artefacts method
     @GetMapping("/artefacts")
@@ -33,13 +40,19 @@ public class ArtefactController {
         List<ArtefactDto> artefacts = artefactService.getAllArtefact();
         return ResponseEntity.ok().body(artefacts);
     }
+
+    //  +--------+
+    //  |   Get  |
+    //  +--------+
     // Get all artefacts by exhibit id method
     @GetMapping("/artefactsByExhibit/{id}")
     public ResponseEntity<List<ArtefactDto>> findByExhibits(@PathVariable Long id){
         List<ArtefactDto> artefacts = artefactService.findByExhibits(id);
         return ResponseEntity.ok().body(artefacts);
     }
-
+    //  +--------+
+    //  |   Get  |
+    //  +--------+
 
     // get artefact by country method
     @GetMapping("artefacts/{country}")
@@ -48,6 +61,9 @@ public class ArtefactController {
         return ResponseEntity.ok().body(artefacts);
     }
 
+    //  +---------+
+    //  |   Post  |
+    //  +---------+
 
     @PostMapping("/Create")
     public ResponseEntity<Artefact> addArtefact(
@@ -62,6 +78,9 @@ public class ArtefactController {
         return ResponseEntity.ok().body(newArtefact);
     }
 
+    //  +--------+
+    //  |   Put  |
+    //  +--------+
 
     // update an artefact by id
     @PutMapping("update/{id}")
@@ -72,6 +91,11 @@ public class ArtefactController {
                 .orElseGet(() -> {return artefactRepository.save(artefact);});
         return ResponseEntity.ok().body(update);
     }
+
+
+    //  +------------+
+    //  |   Delete   |
+    //  +------------+
 
     // delete an artefact method
     @DeleteMapping("delete/{id}")
