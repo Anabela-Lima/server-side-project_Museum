@@ -20,6 +20,11 @@ Database consists of:
 - Staff
 - Assignments
 
+### Entity Relation Diagram
+
+![](../Desktop/Screenshot 2022-05-26 at 11.11.25.png)
+
+
 ## Setup Instructions
 
     1. Fork the Repository
