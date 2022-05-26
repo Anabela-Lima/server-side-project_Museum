@@ -94,16 +94,6 @@ public class ArtefactController {
     //  |   Put  |
     //  +--------+
 
-    // update an artefact by id
-//    @PutMapping("/update/{id}")
-//    public ResponseEntity<Artefact> updateArtefact(@RequestBody Artefact artefact, @PathVariable Long id){
-//        Artefact update = artefactRepository.findById(id).map(updatedArtefact -> {
-//                    updatedArtefact.setName(artefact.getName());
-//                    return artefactRepository.save(updatedArtefact);})
-//                .orElseGet(() -> {return artefactRepository.save(artefact);});
-//        return ResponseEntity.ok().body(update);
-//    }
-
     @Transactional
     @PutMapping("/update/{id}")
     public ResponseEntity<Artefact> updateArtefact(
