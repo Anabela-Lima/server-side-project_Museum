@@ -71,7 +71,7 @@ public class Exhibit {
             joinColumns = @JoinColumn(name = "exhibit_id"),
             inverseJoinColumns = @JoinColumn(name = "staff_id")
     )
-    private Set<Staff> staff;
+    private Set<Staff> staff = new HashSet<>();
 
     /* Museum - museum - Museum that contains this exhibit
     *
