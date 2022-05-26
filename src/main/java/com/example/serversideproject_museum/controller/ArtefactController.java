@@ -134,7 +134,7 @@ public class ArtefactController {
     public ResponseEntity<String> deleteArtefactById
     (@PathVariable Long id){
         artefactService.deleteById(id);
-        return ResponseEntity.ok("Artefact with id" +id +" has been removed from database.");
+        return ResponseEntity.ok("Artefact with id " +id +" has been removed from database.");
 
     }
 
