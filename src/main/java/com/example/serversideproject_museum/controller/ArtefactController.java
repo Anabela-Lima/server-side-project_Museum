@@ -27,19 +27,13 @@ public class ArtefactController {
     }
 
 
-//    private final ArtefactRepository artefactRepository;
-//
-//    public ArtefactController(ArtefactRepository artefactRepository) {
-//        this.artefactRepository = artefactRepository;
-//    }
-
-    // Get all arefacts method
+    // Get all artefacts method
     @GetMapping("/artefacts")
     public ResponseEntity<List<ArtefactDto>> getAllArtefacts(){
         List<ArtefactDto> artefacts = artefactService.getAllArtefact();
         return ResponseEntity.ok().body(artefacts);
     }
-
+    // Get all artefacts by exhibit id method
     @GetMapping("/artefactsByExhibit/{id}")
     public ResponseEntity<List<ArtefactDto>> findByExhibits(@PathVariable Long id){
         List<ArtefactDto> artefacts = artefactService.findByExhibits(id);
@@ -54,12 +48,6 @@ public class ArtefactController {
         return ResponseEntity.ok().body(artefacts);
     }
 
-//    // create an artefact method
-//    @PostMapping("/artefacts")
-//    public ResponseEntity<Artefact> addArtefact(@RequestBody Artefact artefact){
-//        Artefact newArtefact = artefactRepository.save(artefact);
-//        return ResponseEntity.ok().body(newArtefact);
-//    }
 
     @PostMapping("/Create")
     public ResponseEntity<Artefact> addArtefact(
@@ -76,7 +64,7 @@ public class ArtefactController {
 
 
     // update an artefact by id
-    @PutMapping("artefacts/{id}")
+    @PutMapping("update/{id}")
     public ResponseEntity<Artefact> updateArtefact(@RequestBody Artefact artefact, @PathVariable Long id){
         Artefact update = artefactRepository.findById(id).map(updatedArtefact -> {
                     updatedArtefact.setName(artefact.getName());
@@ -86,7 +74,7 @@ public class ArtefactController {
     }
 
     // delete an artefact method
-    @DeleteMapping("artefacts/{id}")
+    @DeleteMapping("delete/{id}")
     public ResponseEntity<String> deleteArtefactById
     (@PathVariable Long id){
         artefactService.deleteById(id);
@@ -94,13 +82,6 @@ public class ArtefactController {
 
     }
 
-//    @DeleteMapping("/delete/{id}")
-//    public void deleteMuseumById(
-//            @PathVariable Long id  // id of museum to be deleted
-//    )
-//    {
-//        museumService.deleteById(id);  // Perform the deletion
-//    }
 
 
 }
