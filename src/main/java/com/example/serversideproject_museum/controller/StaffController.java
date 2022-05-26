@@ -87,10 +87,10 @@ public class StaffController {
                                            @RequestParam String address,
                                            @RequestParam Integer salary) {
         LocalDate dob = LocalDate.now().minusYears(age);
-
-        staffRepository.save(new Staff(firstName, lastName, dob, address, salary));
+        Staff newStaff = new Staff(firstName, lastName, dob, address, salary);
+        staffRepository.save(newStaff);
         System.out.println("Employee " + firstName + "has been hired!");
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body(newStaff);
     }
 
 
@@ -109,7 +109,7 @@ public class StaffController {
         Exhibit exhibit = exhibitService.getExhibit(exhibit_id);
         staff.addExhibit(exhibit);
         Exhibit updatedExhibit = exhibit.addStaff(staff);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body(updatedExhibit);
     }
 
 
