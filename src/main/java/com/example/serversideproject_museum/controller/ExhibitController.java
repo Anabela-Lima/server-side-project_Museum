@@ -30,6 +30,13 @@ public class ExhibitController {
         this.exhibitService = exhibitService;
     }
 
+    // =======================================================================================================================
+    //                    Endpoints
+    // =======================================================================================================================
+
+    //  +--------+
+    //  |   Get  |
+    //  +--------+
 
     // get all exhibits method
     @GetMapping
@@ -37,7 +44,9 @@ public class ExhibitController {
         List<Exhibit> exhibits = exhibitService.getAllExhibit();
         return ResponseEntity.ok().body(exhibits);
     }
-
+    //  +--------+
+    //  |   Get  |
+    //  +--------+
     // get exhibit by id- done
 
     @GetMapping("/{id}")
@@ -49,6 +58,9 @@ public class ExhibitController {
         return ResponseEntity.notFound().build();
     }
 
+    //  +---------+
+    //  |   Post  |
+    //  +---------+
     // create an exhibit
     @PostMapping("/create")
     public ResponseEntity<Exhibit> addExhibit(
@@ -62,6 +74,10 @@ public class ExhibitController {
         return ResponseEntity.ok().body(newExhibit);
     }
 
+    //  +--------+
+    //  |   Put  |
+    //  +--------+
+
     // update an exhibit by id
 
     @PutMapping("/update/{id}")
@@ -74,6 +90,9 @@ public class ExhibitController {
         return ResponseEntity.ok().body(update);
     }
 
+    //  +------------+
+    //  |   Delete   |
+    //  +------------+
     // delete an exhibit by id
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteArtefact(@PathVariable Long id){
