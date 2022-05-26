@@ -65,11 +65,12 @@ public class ExhibitController {
     // update an exhibit by id
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Exhibit> updateExhibit(@RequestBody Exhibit exhibit, @PathVariable Long id){
+    public ResponseEntity<Exhibit> updateExhibit(
+            @RequestParam String name,
+            @PathVariable Long id){
         Exhibit update = exhibitRepository.findById(id).map(updatedExhibit -> {
-                updatedExhibit.setName(exhibit.getName());
-                return exhibitRepository.save(updatedExhibit);})
-        .orElseGet(() -> {return exhibitRepository.save(exhibit);});
+                updatedExhibit.setName(name);
+                return exhibitRepository.save(updatedExhibit);}).orElse(null);
         return ResponseEntity.ok().body(update);
     }
 
