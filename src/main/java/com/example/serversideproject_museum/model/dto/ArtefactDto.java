@@ -1,6 +1,7 @@
 package com.example.serversideproject_museum.model.dto;
 
-import javax.persistence.Column;
+import com.example.serversideproject_museum.model.Country;
+
 import java.time.LocalDate;
 
 public class ArtefactDto {
@@ -21,12 +22,12 @@ public class ArtefactDto {
 
     // String - country - Country of origin of the artefact
 
-    private String country;
+    private Country country;
 
     private Long exhibitId;
 
 
-    public ArtefactDto(Long id, String name, String creator, LocalDate date, String country, Long exhibitId) {
+    public ArtefactDto(Long id, String name, String creator, LocalDate date, Country country, Long exhibitId) {
         this.id = id;
         this.name = name;
         this.creator = creator;
@@ -70,11 +71,11 @@ public class ArtefactDto {
         this.date = date;
     }
 
-    public String getCountry() {
+    public Country getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
+    public void setCountry(Country country) {
         this.country = country;
     }
 

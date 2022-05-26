@@ -2,6 +2,7 @@ package com.example.serversideproject_museum.controller;
 
 import com.example.serversideproject_museum.model.Artefact;
 
+import com.example.serversideproject_museum.model.Country;
 import com.example.serversideproject_museum.model.dto.ArtefactDto;
 import com.example.serversideproject_museum.repository.ArtefactRepository;
 import com.example.serversideproject_museum.service.ArtefactService;
@@ -48,7 +49,7 @@ public class ArtefactController {
 
     // get artefact by country method
     @GetMapping("artefacts/{country}")
-    public ResponseEntity<List<ArtefactDto>> getByArtefactcountry(@PathVariable("country") String country){
+    public ResponseEntity<List<ArtefactDto>> getByArtefactcountry(@PathVariable("country") Country country){
         List<ArtefactDto> artefacts = artefactService.findByCountryDto(country);
         return ResponseEntity.ok().body(artefacts);
     }
@@ -65,7 +66,7 @@ public class ArtefactController {
             @RequestParam String name,
             @RequestParam String creator,
             @RequestParam String date,
-            @RequestParam String country
+            @RequestParam Country country
     )
     {
         LocalDate localDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));

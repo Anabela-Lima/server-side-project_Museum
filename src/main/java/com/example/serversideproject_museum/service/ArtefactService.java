@@ -2,6 +2,7 @@ package com.example.serversideproject_museum.service;
 
 import com.example.serversideproject_museum.model.Artefact;
 
+import com.example.serversideproject_museum.model.Country;
 import com.example.serversideproject_museum.model.dto.ArtefactDto;
 import com.example.serversideproject_museum.repository.ArtefactRepository;
 import com.example.serversideproject_museum.repository.ExhibitRepository;
@@ -66,7 +67,7 @@ public class ArtefactService {
 //    }
     // Service method - get all Artefacts by country
 
-    public List<ArtefactDto> findByCountryDto(String country) {
+    public List<ArtefactDto> findByCountryDto(Country country) {
         return artefactRepository.findByCountry(country)
                 .stream()
                 .map(artefact -> {
@@ -88,7 +89,7 @@ public class ArtefactService {
     }
 
     // Add Artefact
-    public Artefact addArtefact(String name, String creator, LocalDate date, String country) {
+    public Artefact addArtefact(String name, String creator, LocalDate date, Country country) {
         return artefactRepository.save(new Artefact(name, creator, date, country));
     }
 
