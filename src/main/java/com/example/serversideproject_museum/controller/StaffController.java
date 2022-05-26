@@ -17,9 +17,18 @@ import java.util.*;
 
 
 
-// Ana started working commit
 
 @RestController
+
+// =====================================================================================================================
+//                    Endpoints
+// =====================================================================================================================
+
+    //  +--------+
+    //  |   Get  |
+    //  +--------+
+
+
 @RequestMapping("/staff")
 public class StaffController {
 
@@ -32,6 +41,9 @@ public class StaffController {
 
     private ExhibitService exhibitService;
 
+    //  +--------+
+    //  |   Get  |
+    //  +--------+
 
     // GetAll
 
@@ -40,6 +52,10 @@ public class StaffController {
         List<StaffDto> staff = staffService.getAllStaff();
         return ResponseEntity.ok().body(staff);
     }
+
+    //  +--------+
+    //  |   Get  |
+    //  +--------+
 
 
     // Get a staff
@@ -57,6 +73,11 @@ public class StaffController {
     }
 
 
+    //  +---------+
+    //  |   Post  |
+    //  +---------+
+
+
     // Post for staff
 
     @PostMapping("/hire")
@@ -72,7 +93,13 @@ public class StaffController {
         return ResponseEntity.ok().build();
     }
 
-    //putMapping-- problematic
+
+    //  +--------+
+    //  |   Put  |
+    //  +--------+
+
+
+    //putMapping
 
     @Transactional
     @PutMapping("/{staff_id}/exhibit/{exhibit_id}")
@@ -84,6 +111,11 @@ public class StaffController {
         Exhibit updatedExhibit = exhibit.addStaff(staff);
         return ResponseEntity.ok().build();
     }
+
+
+    //  +------------+
+    //  |   Delete   |
+    //  +------------+
 
 
     // Fire staff method [Delete]
@@ -105,8 +137,6 @@ public class StaffController {
         return ResponseEntity.badRequest().build();
     }
 
-
-    // find staff by exhibit id
 
 
 
