@@ -18,6 +18,24 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+/*
+ *   ArtefactController  -- API Layer
+ *   - Handles the getting, creating, updating and deleting of artefact objects in artefact repository
+ *   - Endpoints available:
+ *       - Get:
+ *           - /artefact  - returns a list of all artefacts in the repository
+ *                      - optional extra filter by exhibit id
+ *           - /artefact/byExhibit/{id}  - returns all artefacts in a specific exhibit
+ *                      - optional extra filter by country
+ *           - /artefact/{country}  - returns all artefacts located in a specific country
+ *       - Post:
+ *           - /artefact/create   - to add a new artefact
+ *       - Put:
+ *           - /artefact/update/{id}   - to update an artefact using its id
+ *       - Delete:
+ *           - /artefact/delete/{id}  - to delete an artefact using its id
+ */
+
 @RestController
 @RequestMapping("/artefact")
 public class ArtefactController {
@@ -28,8 +46,14 @@ public class ArtefactController {
     @Autowired
     ExhibitRepository exhibitRepository;
 
+    //   ArtefactController Properties
+
+    // ArtefactService - artefactService - To link controller up with Artefact service layer
     private final ArtefactService artefactService;
 
+    //   Constructor
+
+    // Initiate controller to include artefactService
     public ArtefactController(ArtefactService artefactService) {
         this.artefactService = artefactService;
     }
@@ -41,6 +65,20 @@ public class ArtefactController {
     //  +--------+
     //  |   Get  |
     //  +--------+
+    /*
+     *   /artefact
+     *       - returns a list of all artefacts available in the repository
+     *         by calling getAll() in the artefact service layer
+     *       - Optional choice to filter the list by specific exhibit id
+     *         calling findByExhibit(exhibit) from the artefact service layer
+     *       - Optional choice to filter the list by country by
+     *         calling findByCountry(country) from the artefact service layer
+     *
+     * @RequestParam country  - optional choice to filter museums only from this given country
+     *
+     * @return List<Museum> - List of all museums in the repository
+     *
+     */
 
     // Get all artefacts method
     @GetMapping
@@ -64,7 +102,7 @@ public class ArtefactController {
 
     // get artefact by country method
     @GetMapping("/{country}")
-    public ResponseEntity<List<ArtefactDto>> getByArtefactcountry(@PathVariable("country") Country country){
+    public ResponseEntity<List<ArtefactDto>> getByArtefactCountry(@PathVariable("country") Country country){
         List<ArtefactDto> artefacts = artefactService.findByCountryDto(country);
         return ResponseEntity.ok().body(artefacts);
     }
