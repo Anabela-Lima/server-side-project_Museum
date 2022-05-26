@@ -40,13 +40,6 @@ class ServerSideProjectMuseumApplicationTests {
     @Autowired
     MuseumService museumService;
 
-    @Autowired
-    ExhibitService exhibitService;
-
-    @Test
-    void contextLoads() {
-    }
-
     @Nested
     @DisplayName("Tests for Museum")
     class MuseumTests {
@@ -121,9 +114,9 @@ class ServerSideProjectMuseumApplicationTests {
             assertEquals(0, museum.getExhibits().size());
             assertTrue(museum.getExhibits().isEmpty());
             assertNull(exhibit.getMuseum());
-            Museum updatedMuseum = museumService.addExhibit(21L, 28L);
-            //assertEquals("Test Exhibit", exhibitRepository.findById(28L).orElseThrow().getName());
-            //assertEquals(1, updatedMuseum.getExhibits().size());
+            Museum updatedMuseum = museumService.addExhibit(museum.getId(), exhibit.getId());
+            assertEquals("Test Exhibit", exhibitRepository.findById(exhibit.getId()).get().getName());
+            assertEquals(1, updatedMuseum.getExhibits().size());
         }
     }
 

@@ -33,7 +33,7 @@ public class MuseumService {
 
     // get museum
     public Museum getMuseum(Long id) {
-        return museumRepository.findById(id).orElseThrow();
+        return museumRepository.findById(id).orElse(null);
     }
 
 
