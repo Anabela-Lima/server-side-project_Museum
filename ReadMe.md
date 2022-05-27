@@ -20,6 +20,10 @@ Database consists of:
 - Staff
 - Assignments
 
+### UML Diagram
+
+![UML Diagram](UML%20Diagram.png)
+
 ### Entity Relation Diagram
 
 ![Entity Relation Diagram](ERD.png)

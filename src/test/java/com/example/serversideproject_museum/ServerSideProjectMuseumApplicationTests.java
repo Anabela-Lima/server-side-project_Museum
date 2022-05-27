@@ -48,6 +48,7 @@ class ServerSideProjectMuseumApplicationTests {
         @Test
         @DisplayName("Museums are loaded from data.sql correctly")
         public void dataSqlLoadMuseums() {
+            //Testing our sql data file, which has 20 museums in and making sure the list of musuems in our repo also is of size 20   sss
             List<Museum> found = museumRepository.findAll();
             assertEquals(20, found.size());
         }
@@ -56,6 +57,8 @@ class ServerSideProjectMuseumApplicationTests {
         @Test
         @DisplayName("Museums can be deleted by ID")
         public void canDeleteMuseumById() {
+            //we're getting a museum object using id, and then we delete a museum from the repo using id. we then assert that the museum repo does not contain
+            // this museum object  ssss
             Museum museum = museumRepository.getReferenceById(3L);
             museumRepository.deleteById(3L);
             assertThat(museumRepository.findAll(), not(hasItem(museum)));
@@ -65,6 +68,7 @@ class ServerSideProjectMuseumApplicationTests {
         @Test
         @DisplayName("Can add a new museum")
         public void canAddMuseum() {
+            //adding new museum then checking that the size of the list has increased by 1  sss
             museumService.addMuseum("New Museum test", Country.Afghanistan);
             assertEquals(21, museumRepository.findAll().size());
         }
@@ -73,6 +77,7 @@ class ServerSideProjectMuseumApplicationTests {
         @Test
         @DisplayName("Can filter museums by country")
         public void canFindByCountry() {
+            // don't show this one
             assertEquals(1, museumService.findByCountry(Country.Japan).size());
         }
 
@@ -80,6 +85,7 @@ class ServerSideProjectMuseumApplicationTests {
         @Test
         @DisplayName("Can add existing exhibit to the museum")
         public void canAddExhibitToMuseum() {
+            // same as adding museum
             Museum museum = museumService.addExhibit(1L, 20L);
             assertEquals(5, museum.getExhibits().size());
         }
@@ -126,6 +132,7 @@ class ServerSideProjectMuseumApplicationTests {
         @Transactional
         @Test
         public void dataSqlLoadsArtefacts() {
+            // same data sql for artefacts
             List<Artefact> found = artefactRepository.findAll();
             assertEquals(100, found.size());
         }
@@ -134,9 +141,10 @@ class ServerSideProjectMuseumApplicationTests {
         @Test
         @DisplayName("Can find artefacts by country")
         public void canFindByCountry() {
+            // find list of artefacts by country name and make sure all the artefacts returned have the correct country
             List<Artefact> found = artefactRepository.findByCountry(Country.UnitedStates);
             for (Artefact artefact : found) {
-                assertEquals("UnitedStates", artefact.getCountry().name());
+                assertEquals(Country.UnitedStates, artefact.getCountry());
             }
         }
     }
@@ -148,6 +156,7 @@ class ServerSideProjectMuseumApplicationTests {
         @Test
         @DisplayName("Can fire staff")
         public void canFireStaff() {
+            // same as deleting museum
             Staff staff = staffRepository.getReferenceById(1L);
             staffRepository.deleteById(1L);
             assertThat(staffRepository.findAll(), not(hasItem(staff)));
@@ -161,6 +170,7 @@ class ServerSideProjectMuseumApplicationTests {
         @Test
         @DisplayName("Exhibits load properly from data.sql")
         public void dataSqlLoadExhibits() {
+            // same as data sql others
             List<Exhibit> found = exhibitRepository.findAll();
             assertEquals(27, found.size());
         }

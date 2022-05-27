@@ -62,6 +62,7 @@ public class ExhibitController {
     //  |   Post  |
     //  +---------+
     // create an exhibit
+    // ss creating new exhibit using name (and can optionally link it to a museum using museum id)
     @PostMapping("/create")
     public ResponseEntity<Exhibit> addExhibit(
             @RequestParam String name,
@@ -78,7 +79,7 @@ public class ExhibitController {
     //  |   Put  |
     //  +--------+
 
-    // update an exhibit by id
+    // update an exhibit by id, takes id and name. Finds by id and updates sets the new name and saves it
 
     @PutMapping("/update/{id}")
     public ResponseEntity<Exhibit> updateExhibit(
@@ -93,7 +94,7 @@ public class ExhibitController {
     //  +------------+
     //  |   Delete   |
     //  +------------+
-    // delete an exhibit by id
+    // delete an exhibit by id.
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteArtefact(@PathVariable Long id){
         exhibitRepository.deleteById(id);
