@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
 
+// Service annotation
 @Service
 public class ArtefactService {
 
@@ -22,12 +23,7 @@ public class ArtefactService {
     ExhibitRepository exhibitRepository;
 
 
-    // Service method - get all Artefacts
-//    public List<Artefact> getAllArtefact() {return artefactRepository.findAll();
-//    }
-
-
-    // get all Artefacts with exhibit id showing in the body
+    // get all Artefacts with exhibit id showing in the body - using ArtefactsDto
     public List<ArtefactDto> getAllArtefact() {
         return artefactRepository.findAll()
                 .stream()
@@ -44,7 +40,7 @@ public class ArtefactService {
                 .toList();
     }
 
-    // get all artefacts by exhibit id
+    // get all artefacts by exhibit id - using ArtefactsDto
     public List<ArtefactDto> findByExhibits(Long exhibitId) {
         return artefactRepository.findByExhibits(exhibitRepository.findById(exhibitId).get())
                 .stream()
@@ -61,11 +57,7 @@ public class ArtefactService {
                 .toList();
     }
 
-
-//    public List<Artefact> findByCountry(String country) {
-//        return artefactRepository.findByCountry(country);
-//    }
-    // Service method - get all Artefacts by country
+    // Service method - get all Artefacts by country - using ArtefactsDto
 
     public List<ArtefactDto> findByCountryDto(Country country) {
         return artefactRepository.findByCountry(country)
@@ -92,6 +84,5 @@ public class ArtefactService {
     public Artefact addArtefact(String name, String creator, LocalDate date, Country country) {
         return artefactRepository.save(new Artefact(name, creator, date, country));
     }
-
 
 }
